@@ -1,69 +1,71 @@
-{% for  block in section.blocks%} 
-{% case variavle %}
-    {% when condition %}
-        {% else %}
-{% endcase %}
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'article_title' %}
+      <h1>{{ article.title }}</h1>
+    {% when 'article_author' %}
+      {% if section.settings.enable_author %}
+        <small>{{ article.author }}</small>
+      {% endif %}
+    {% when 'article_published_date' %}
+      {% if section.settings.enable_published_date %}
+        <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}">
+          {{ article.published_at | date: '%Y-%m-%d' -}}
+        </time>
+      {% endif %}
+    {% when 'featured_image' %}
+      <img src="{{ article.image |img_url:'large'}}" alt="{{ article.image.alt }}" width="" height="">
+    {% when 'article_content' %}
+      <div class="article-content">
+        {{ article.content }}
+      </div>
+    {% else %}
 
+  {% endcase %}
 {% endfor %}
-
-
-<h1>{{ article.title }}</h1>
-
-{% if section.settings.enable_author %}
-<small>{{ article.author }}</small>
-{% endif %}
-{% if section.settings.enable_published_date%}
-    <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}"> {{ article.published_at | date: '%Y-%m-%d' }}</time>
-{% endif %}
-{% comment %} <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}"> {{ article.published_at | date: '%Y-%m-%d' }}</time> {% endcomment %}
-<img src="{{ article.image |img_url:'large'}}" alt="{{ article.image.alt }}" width="" height=""/>
-<div class="article-content">
-{{ article.content }}
-</div>
 
 {%- schema -%}
 {
-"name":"Template-Articale",
-"settings": [
+  "name": "Template-Articale",
+  "settings": [
     {
-    "type":"checkbox",
-    "id": "enable_author",
-    "default":true,
-    "label":"Display Author Name "
-    },
-   {
-        "type":"checkbox",
-        "id": "enable_published_date",
-        "default":true,
-        "label":"Display Published Date "
-        },
-],
-"blocks": [
-    {
-        "type":"article_title",
-        "name":"Title",
-        "limit": 1
+      "type": "checkbox",
+      "id": "enable_author",
+      "default": true,
+      "label": "Display Author Name "
     },
     {
-        "type":"article_author",
-        "name":"Author",
-        "limit": 1
+      "type": "checkbox",
+      "id": "enable_published_date",
+      "default": true,
+      "label": "Display Published Date "
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article_title",
+      "name": "Title",
+      "limit": 1
     },
     {
-        "type":"article_published_date",
-        "name":"Published Date",
-        "limit": 1
+      "type": "article_author",
+      "name": "Author",
+      "limit": 1
     },
     {
-        "type":"featured_image",
-        "name":"Tumbnail",
-        "limit": 1
+      "type": "article_published_date",
+      "name": "Published Date",
+      "limit": 1
     },
     {
-        "type":"article_content",
-        "name":"Content",
-        "limit": 1
+      "type": "featured_image",
+      "name": "Tumbnail",
+      "limit": 1
     },
-]
+    {
+      "type": "article_content",
+      "name": "Content",
+      "limit": 1
+    }
+  ]
 }
 {%- endschema -%}
