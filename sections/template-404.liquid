@@ -1,0 +1,80 @@
+{% comment %}
+  <h1>
+    {{section.settings.title}}
+  </h1>
+  <p>{{ section.settings.subtext_title }}</p>
+{% endcomment %}
+
+{% comment %} <div class="404page">
+  <div class="404Section">
+    {{ section.settings.title }}
+  </div>
+  <div class="404paragraf">
+    <p class="para404Page">
+      {{ section.settings.subtext_title }}
+    </p>
+  </div>
+  <div class="404paragraf">
+    {% if section.settings.button_url == blank %}
+      {% assign shop_url = shop.secure_url %}
+
+    {% else %}
+      {% assign shop_url = section.settings.button_url %}
+    {% endif %}
+    <a href="shop_url" class="shop_Url_btn">{{section.settings.button_label}}</a>
+  </div>
+</div>  {% endcomment %}
+
+<div class="404page">
+  <div class="404Section">
+    {{ section.settings.title }}
+  </div>
+  <div class="404paragraf">
+    <p class="para404Page">
+      {{ section.settings.subtext_title }}
+    </p>
+  </div>
+  <div class="404paragraf">
+    {% if section.settings.button_url == blank %}
+      {% assign shop_url = shop.secure_url %}
+    {% else %}
+      {% assign shop_url = section.settings.button_url %}
+    {% endif %}
+    <a href="{{ shop_url }}" class="shop_Url_btn">{{ section.settings.button_label }}</a>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "template 404",
+  "tag": "section",
+  "class": "flex items-center justify-center",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "404",
+      "label": "404 heading title"
+    },
+    {
+      "type": "text",
+      "id": "subtext_title",
+      "default": "page you were looking for does not exits",
+      "label": "404 heading title"
+    },
+    {
+      "type": "text",
+      "id": "button-label",
+      "default": "back to home page",
+      "label": "button_label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "button_url"
+    }
+  ]
+}
+{% endschema %}
