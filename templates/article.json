@@ -21,11 +21,23 @@
           "type": "article_title",
           "settings": {
           }
+        },
+        "article_published_date_HjcAP6": {
+          "type": "article_published_date",
+          "settings": {
+          }
+        },
+        "article_content_gzMbrX": {
+          "type": "article_content",
+          "settings": {
+          }
         }
       },
       "block_order": [
         "featured_image_3ERmVf",
-        "article_title_VnAPqh"
+        "article_title_VnAPqh",
+        "article_published_date_HjcAP6",
+        "article_content_gzMbrX"
       ],
       "settings": {
         "enable_author": true,
