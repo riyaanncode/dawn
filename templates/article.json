@@ -9,6 +9,12 @@
 */
 {
   "sections": {
+    "header_FgqyBi": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    },
     "template": {
       "type": "template-article",
       "blocks": {
@@ -46,6 +52,7 @@
     }
   },
   "order": [
+    "header_FgqyBi",
     "template"
   ]
 }
