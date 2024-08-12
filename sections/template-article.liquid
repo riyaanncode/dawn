@@ -1,28 +1,33 @@
 <article>
-{% for block in section.blocks %}
-  {% case block.type %}
-    {% when 'article_title' %}
-      <h1>{{ article.title }}</h1>
-    {% when 'article_author' %}
-      {% if section.settings.enable_author %}
-        <small>{{ article.author }}</small>
-      {% endif %}
-    {% when 'article_published_date' %}
-      {% if section.settings.enable_published_date %}
-        <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}">
-          {{ article.published_at | date: '%Y-%m-%d' -}}
-        </time>
-      {% endif %}
-    {% when 'featured_image' %}
-      <img src="{{ article.image |img_url:'large'}}" alt="{{ article.image.alt }}" width="" height="">
-    {% when 'article_content' %}
-      <div class="article-content">
-        {{ article.content }}
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'article_title' %}
+        <div class="blogPage_article_container">
+          <div class="blogPage_title">
+            <a href="{{ blog.url }}" class="blog_url">{{ blog.title }}</a>
+        <h1>{{ article.title }}</h1>
       </div>
-    {% else %}
+        </div>
+      {% when 'article_author' %}     
+        {% if section.settings.enable_author %}
+          <small>{{ article.author }}</small>
+        {% endif %}
+      {% when 'article_published_date' %}
+        {% if section.settings.enable_published_date %}
+          <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}">
+            {{ article.published_at | date: '%Y-%m-%d' -}}
+          </time>
+        {% endif %}
+      {% when 'featured_image' %}
+        <img src="{{ article.image |img_url:'large'}}" alt="{{ article.image.alt }}" width="" height="">
+      {% when 'article_content' %}
+        <div class="article-content">
+          {{ article.content }}
+        </div>
+      {% else %}
 
-  {% endcase %}
-{% endfor %}
+    {% endcase %}
+  {% endfor %}
 </article>
 
 {%- schema -%}
