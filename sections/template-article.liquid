@@ -7,7 +7,7 @@
     <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}"> {{ article.published_at | date: '%Y-%m-%d' }}</time>
 {% endif %}
 {% comment %} <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}"> {{ article.published_at | date: '%Y-%m-%d' }}</time> {% endcomment %}
-<img src="{{ article.image |img_url:'large'}}" alt="{{ article.image.alt }}"/>
+<img src="{{ article.image |img_url:'large'}}" alt="{{ article.image.alt }}" width="" height=""/>
 <div class="article-content">
 {{ article.content }}
 </div>
@@ -48,6 +48,11 @@
     {
         "type":"featured_image",
         "name":"Tumbnail",
+        "limit": 1
+    },
+    {
+        "type":"article_content",
+        "name":"Content",
         "limit": 1
     },
 ]
