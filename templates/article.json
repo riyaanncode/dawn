@@ -1,28 +1,58 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
-  "sections":{
-    "template":{
-      "type":"template-article",
-      "block":{
-        "title":{
-          "type":"article_title"
+  "sections": {
+    "header_FgqyBi": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    },
+    "template": {
+      "type": "template-article",
+      "blocks": {
+        "featured_image_3ERmVf": {
+          "type": "featured_image",
+          "settings": {
+          }
         },
-        "author":{
-          "type":"article_author"
+        "article_title_VnAPqh": {
+          "type": "article_title",
+          "settings": {
+          }
         },
-        "published_date":{
-          "type":"article_published-date"
+        "article_published_date_HjcAP6": {
+          "type": "article_published_date",
+          "settings": {
+          }
         },
-        "thumbnail":{
-          "type":"featured_image"
-        },
-        "content":{
-          "type":"article_content"
+        "article_content_gzMbrX": {
+          "type": "article_content",
+          "settings": {
+          }
         }
-
       },
-      "block_order":["Title","Author","Published Date","Tumbnail","Content",]
+      "block_order": [
+        "featured_image_3ERmVf",
+        "article_title_VnAPqh",
+        "article_published_date_HjcAP6",
+        "article_content_gzMbrX"
+      ],
+      "settings": {
+        "enable_author": true,
+        "enable_published_date": true
+      }
     }
   },
-  "order":["template"]
-
+  "order": [
+    "header_FgqyBi",
+    "template"
+  ]
 }
