@@ -21,11 +21,17 @@
           "type": "article_published_date",
           "settings": {
           }
+        },
+        "article_content_LiffYD": {
+          "type": "article_content",
+          "settings": {
+          }
         }
       },
       "block_order": [
         "article_title_eUbb7a",
-        "article_published_date_cCejfc"
+        "article_published_date_cCejfc",
+        "article_content_LiffYD"
       ],
       "settings": {
         "enable_author": true,
