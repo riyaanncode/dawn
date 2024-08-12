@@ -12,6 +12,11 @@
     "template": {
       "type": "template-article",
       "blocks": {
+        "featured_image_yCYiy9": {
+          "type": "featured_image",
+          "settings": {
+          }
+        },
         "article_title_eUbb7a": {
           "type": "article_title",
           "settings": {
@@ -29,6 +34,7 @@
         }
       },
       "block_order": [
+        "featured_image_yCYiy9",
         "article_title_eUbb7a",
         "article_published_date_cCejfc",
         "article_content_LiffYD"
