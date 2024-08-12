@@ -2,10 +2,11 @@
 
 {% if section.settings.enable_author %}
 <small>{{ article.author }}</small>
-{% else %}
-{% if section.settings.enable_published_date%}
 {% endif %}
-<time datetime="{{ article.published_at |date:'%Y-%m-%d' }}"> {{ article.published_at | date: '%Y-%m-%d' }}</time>
+{% if section.settings.enable_published_date%}
+    <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}"> {{ article.published_at | date: '%Y-%m-%d' }}</time>
+{% endif %}
+{% comment %} <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}"> {{ article.published_at | date: '%Y-%m-%d' }}</time> {% endcomment %}
 <img src="{{ article.image |img_url:'large'}}" alt="{{ article.image.alt }}"/>
 <div class="article-content">
 {{ article.content }}
