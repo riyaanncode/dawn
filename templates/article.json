@@ -23,14 +23,17 @@
           }
         }
       },
-      "block_order": [
-        "article_title_eUbb7a",
-        "article_published_date_cCejfc"
-      ],
+      // "block_order": [
+      //   "article_title_eUbb7a",
+      //   "article_published_date_cCejfc"
+      // ],
       "settings": {
         "enable_author": true,
         "enable_published_date": true
-      }
+      },
+      "block_order":["Title",  "Thumbnail", "Content" ,"Author","published_date"]
+
+      
     }
   },
   "order": [
