@@ -1,4 +1,4 @@
-<article  itemscope itemtype="https://schema.org/BlogPosting">
+<article itemscope itemtype="https://schema.org/BlogPosting">
   {% for block in section.blocks %}
     {% case block.type %}
       {% when 'article_title' %}
@@ -10,9 +10,9 @@
         </div>
       {% when 'article_author' %}
         <div class="setting_aurthor" itemscope itemtype="https://schema.org/Person">
-        {% if section.settings.enable_author %}
-          <small itemprop="author">{{ article.author }}</small>
-        {% endif %}
+          {% if section.settings.enable_author %}
+            <small itemprop="author">{{ article.author }}</small>
+          {% endif %}
         </div>
       {% when 'article_published_date' %}
         {% if section.settings.enable_published_date %}
@@ -53,10 +53,9 @@
               <p class="comment_conte">{{ comment.content }}</p>
             </div>
           {% endfor %}
-          {% if paginate.pages >1 %}
-          {{ paginate |  default_pagination }}
+          {% if paginate.pages > 1 %}
+            {{ paginate | default_pagination }}
           {% endif %}
-
         {% endpaginate %}
       </div>
     {% else %}
