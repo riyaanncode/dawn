@@ -5,10 +5,10 @@
         <div class="blogPage_article_container">
           <div class="blogPage_title">
             <a href="{{ blog.url }}" class="blog_url">{{ blog.title }}</a>
-        <h1>{{ article.title }}</h1>
-      </div>
+            <h1>{{ article.title }}</h1>
+          </div>
         </div>
-      {% when 'article_author' %}     
+      {% when 'article_author' %}
         {% if section.settings.enable_author %}
           <small>{{ article.author }}</small>
         {% endif %}
@@ -20,14 +20,14 @@
         {% endif %}
       {% when 'featured_image' %}
         <div class="block_img">
-        {% if article.image != blank %}
-          <img src="{{ article.image | img_url:'large'}}" alt="{{ article.image.alt }}" width="" height="">
+          {% if article.image != blank %}
+            <img src="{{ article.image | img_url:'large'}}" alt="{{ article.image.alt }}" width="" height="">
           {% else %}
-           {%- assign placeHolder_Image = 'lifestyle-2'-%}
-          {{ placeHolder_Image | placeholder_svg_tag:"w-full"}}
+            {%- assign placeHolder_Image = 'lifestyle-2' -%}
+            {{ placeHolder_Image | placeholder_svg_tag: 'w-full' }}
           {% endif %}
         </div>
-        
+
       {% when 'article_content' %}
         <div class="article-content">
           {{ article.content }}
@@ -38,9 +38,47 @@
   {% endfor %}
 </article>
 
-{% if  blog.comments_enabled? %}
-  {% else %}
-  no comment avaliable
+{% if blog.comments_enabled? %}
+  <div id="comments" class="blog-comment">
+    {% if article.comments.count > 0 %}
+    {% else %}
+      there are no comments in this article
+    {% endif %}
+  </div>
+  <div id="comment_form" class="comment_form">
+    {% form 'new_comment', article %}
+      <div class="form_container">
+        <div class="form_content">
+        <label class="comment-author" for="comment_author">Name</label>
+        <input id="comment_author" type="text" class="input_name" name="comment[author]" placeholder="enter  your name">
+      </div>
+        <div class="form_email">
+          <label class="comment-email" for="comment_email">Email</label>
+          <input
+            id="comment_email"
+            type="text"
+            class="input_email"
+            name="comment[email]"
+            placeholder=" enter your email"
+          >
+        </div>
+        <div class="form_comments">
+          <label class="comment-comment" for="comment_content">Comment</label>
+          <textarea
+            id="comment_content"
+            type="text"
+            class="input_comment"
+            name="comment[body]"
+            required></textarea>
+        </div>
+        <div class="submit_section">
+        <div class="submit_container">
+          <input type="submit" class="submit-class" value="post_comment"/>
+        </div>
+      </div>
+      </div>
+    {% endform %}
+  </div>
 {% endif %}
 
 {%- schema -%}

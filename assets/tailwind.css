@@ -194,32 +194,7 @@ table {
 3. Remove default padding in all browsers.
 */
 
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  /* 1 */
-  font-feature-settings: inherit;
-  /* 1 */
-  font-variation-settings: inherit;
-  /* 1 */
-  font-size: 100%;
-  /* 1 */
-  font-weight: inherit;
-  /* 1 */
-  line-height: inherit;
-  /* 1 */
-  letter-spacing: inherit;
-  /* 1 */
-  color: inherit;
-  /* 1 */
-  margin: 0;
-  /* 2 */
-  padding: 0;
-  /* 3 */
-}
+
 
 /*
 Remove the inheritance of text transform in Edge and Firefox.
@@ -657,6 +632,36 @@ video {
 .blogPage_title{
   color: #df1a1a;
   text-align: center;
+}
+.input{
+  height: 45px;
+  box-shadow: 2px 5px 10px 1px #6316ef4a;
+  width: 25%;
+  border: 2px solid #6d6969;
+  margin-bottom: 10px;
+}
+
+.comment-comment{
+  margin-left: 3px;
+  top: 883px;
+  position: absolute;
+}
+
+#comment_content{
+  margin-left: 108px;
+  height: 78px;
+  width: 336px;
+  border: 2px solid black;
+}
+#comment_form{
+  box-shadow: 5px 6px 10px 15px #a0522d33;
+  border: 2px solid black;
+  padding: 20px;
+  gap: 20;
+  text-align: center;
+  height: auto;
+  background-color: #1aeba5;
+  width: auto;
 }
 /* Media query for md breakpoint */
 @media (min-width: 768px) {
