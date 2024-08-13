@@ -1,25 +1,27 @@
-<article>
+<article  itemscope itemtype="https://schema.org/BlogPosting">
   {% for block in section.blocks %}
     {% case block.type %}
       {% when 'article_title' %}
         <div class="blogPage_article_container">
           <div class="blogPage_title">
             <a href="{{ blog.url }}" class="blog_url">{{ blog.title }}</a>
-            <h1>{{ article.title }}</h1>
+            <h1 itemprop="headline">{{ article.title }}</h1>
           </div>
         </div>
       {% when 'article_author' %}
+        <div class="setting_aurthor" itemscope itemtype="https://schema.org/Person">
         {% if section.settings.enable_author %}
-          <small>{{ article.author }}</small>
+          <small itemprop="author">{{ article.author }}</small>
         {% endif %}
+        </div>
       {% when 'article_published_date' %}
         {% if section.settings.enable_published_date %}
-          <time datetime="{{ article.published_at |date:'%Y-%m-%d' }}">
+          <time itemprop="dateCreated datePublished" datetime="{{ article.published_at |date:'%Y-%m-%d' }}">
             {{ article.published_at | date: '%Y-%m-%d' -}}
           </time>
         {% endif %}
       {% when 'featured_image' %}
-        <div class="block_img">
+        <div class="block_img" itemprop="image">
           {% if article.image != blank %}
             <img src="{{ article.image | img_url:'large'}}" alt="{{ article.image.alt }}" width="" height="">
           {% else %}
@@ -29,7 +31,7 @@
         </div>
 
       {% when 'article_content' %}
-        <div class="article-content">
+        <div class="article-content" itemprop="articleBody">
           {{ article.content }}
         </div>
       {% else %}
