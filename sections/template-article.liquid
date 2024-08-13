@@ -38,6 +38,11 @@
   {% endfor %}
 </article>
 
+{% if  blog.comments_enabled? %}
+  {% else %}
+  no comment avaliable
+{% endif %}
+
 {%- schema -%}
 {
   "name": "Template-Articale",
