@@ -21,10 +21,10 @@
       {% when 'featured_image' %}
         <div class="block_img">
         {% if article.image != blank %}
-          <img src="{{ article.image |img_url:'large'}}" alt="{{ article.image.alt }}" width="" height="">
+          <img src="{{ article.image | img_url:'large'}}" alt="{{ article.image.alt }}" width="" height="">
           {% else %}
            {%- assign placeHolder_Image = 'lifestyle-2'-%}
-          {{ placeHolder_Image || placeholder_svg_tag:"w-full"}}
+          {{ placeHolder_Image | placeholder_svg_tag:"w-full"}}
           {% endif %}
         </div>
         
