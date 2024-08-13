@@ -41,6 +41,18 @@
 {% if blog.comments_enabled? %}
   <div id="comments" class="blog-comment">
     {% if article.comments.count > 0 %}
+      <div class="class-comment_count">
+        <h1 class="class-comment-menu">see what people are saying</h1>
+        {% paginate article.comments by 6 %}
+          {% for comment in article.comments %}
+            <div class="pagination_">
+              <span class="comment-author">{{ comment.author }}</span>
+              <span class="comment_created_at">{{ comment.created_at | date: format: 'default' }}</span>
+              <p class="comment_conte">{{ comment.content }}</p>
+            </div>
+          {% endfor %}
+        {% endpaginate %}
+      </div>
     {% else %}
       there are no comments in this article
     {% endif %}
@@ -49,9 +61,15 @@
     {% form 'new_comment', article %}
       <div class="form_container">
         <div class="form_content">
-        <label class="comment-author" for="comment_author">Name</label>
-        <input id="comment_author" type="text" class="input_name" name="comment[author]" placeholder="enter  your name">
-      </div>
+          <label class="comment-author" for="comment_author">Name</label>
+          <input
+            id="comment_author"
+            type="text"
+            class="input_name"
+            name="comment[author]"
+            placeholder="enter  your name"
+          >
+        </div>
         <div class="form_email">
           <label class="comment-email" for="comment_email">Email</label>
           <input
@@ -69,13 +87,14 @@
             type="text"
             class="input_comment"
             name="comment[body]"
-            required></textarea>
+            required
+          ></textarea>
         </div>
         <div class="submit_section">
-        <div class="submit_container">
-          <input type="submit" class="submit-class" value="post_comment"/>
+          <div class="submit_container">
+            <input type="submit" class="submit-class" value="post_comment">
+          </div>
         </div>
-      </div>
       </div>
     {% endform %}
   </div>

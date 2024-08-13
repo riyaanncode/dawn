@@ -642,8 +642,10 @@ video {
 }
 
 .comment-comment{
-  margin-left: 3px;
-  top: 883px;
+  margin-bottom: 34px;
+  /* padding: 10px; */
+  margin-left: 227px;
+  top: 1068px;
   position: absolute;
 }
 
@@ -654,14 +656,14 @@ video {
   border: 2px solid black;
 }
 #comment_form{
-  box-shadow: 5px 6px 10px 15px #a0522d33;
-  border: 2px solid black;
-  padding: 20px;
-  gap: 20;
-  text-align: center;
-  height: auto;
-  background-color: #1aeba5;
-  width: auto;
+     /* box-shadow: 5px 6px 10px 15px #a0522d33; */
+    /* border: 2px solid black; */
+    padding: 20px;
+    gap: 20;
+    text-align: center;
+    height: auto;
+    /* background-color: #1aeba5; */
+    width: auto;
 }
 
 /* Container styling */
@@ -684,6 +686,7 @@ video {
 .form_content,
 .form_email,
 .form_comments {
+  margin-top: 20px;
   margin-bottom: 15px;
 }
 
