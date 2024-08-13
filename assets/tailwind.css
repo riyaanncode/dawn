@@ -663,6 +663,103 @@ video {
   background-color: #1aeba5;
   width: auto;
 }
+
+/* Container styling */
+.comment_form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form content styling */
+.form_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_content,
+.form_email,
+.form_comments {
+  margin-bottom: 15px;
+}
+
+/* Label styling */
+label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+/* Input and textarea styling */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #66afe9;
+  outline: none;
+}
+
+/* Textarea specific styling */
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Submit button styling */
+.submit_section {
+  text-align: center;
+}
+
+.submit-class {
+  background-color: #28a745;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-class:hover {
+  background-color: #218838;
+}
+
+.submit-class:active {
+  background-color: #1e7e34;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .comment_form {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .submit-class {
+    width: 100%;
+  }
+}
+
+
+
 /* Media query for md breakpoint */
 @media (min-width: 768px) {
   .md\\:flex {
