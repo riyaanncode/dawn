@@ -51,7 +51,7 @@
                   >
                 </td>
                 <td class="cart_total_price">
-                {{ item.line_price | money }}
+                  {{ item.line_price | money }}
                 </td>
               </tr>
             {% endfor %}
@@ -59,15 +59,21 @@
         </table>
 
         <div class="text-area-sections">
-        <div class="text-area-container">
-        <div class="text-area-container-menu">
-          <label for="cart_notes"  class="lable-text">Notes</label>
-        <textarea name="note" id="cart_notes" cols="30" rows="10" class="display_textArea_data"></textarea>
-        </div>
-        </div>
+          <div class="text-area-container">
+            <div class="text-area-container-menu">
+              <label for="cart_notes" class="lable-text">Notes</label>
+              <textarea name="note" id="cart_notes" cols="30" rows="10" class="display_textArea_data"></textarea>
+            </div>
+          </div>
+          <div class="subtotal-area-section">
+            <h3 class="subtottl">SubTotal:{{ cart.total_price }}</h3>
+            <button type="submit" name="update" class="update-button">Update</button>
+          </div>
+          <div class="checkout-section">
+            <button type="submit" name="checkout-button" class="checkout-button">Checkout</button>
+          </div>
         </div>
       </form>
-
     </div>
   </div>
 
