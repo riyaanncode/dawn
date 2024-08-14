@@ -8,32 +8,37 @@
     </div>
     <div class="display_cart_item_Section">
       <form action="{{ routes.cart_url }}" method="post" novalidate>
-      <table class="table-section">
-        <thead class="table_head">
-        <th class="table_th_tag">Product</th>
-        <th class="table_th_tag">Quality</th>
-        <th class="table_th_tag">Product Price</th>
-        </thead>
-        <tbody class="table-body">
-{% for item in cart.items %}
-<tr class="table-row">
-  <td>
-  <a href="{{ item.url }}">
-  {% if item.image %}
-
-  {% else %}
-  {{ 'product-1'|placeholder_svg_tag:'placeholder-svg-tags' }}
-  {% endif %}
-  </a>
-  </td>
-  <td></td>
-  <td></td>
-  <td></td>
-
-</tr>
-{% endfor %}
-        </tbody>
-      </table>
+        <table class="table-section">
+          <thead class="table_head">
+            <th class="table_th_tag">Product</th>
+            <th class="table_th_tag">Quality</th>
+            <th class="table_th_tag">Product Price</th>
+          </thead>
+          <tbody class="table-body">
+            {% for item in cart.items %}
+              <tr class="table-row">
+                <td>
+                  <a href="{{ item.url }}">
+                    {% if item.image %}
+                      <img
+                        src="{{item.image |img_url:'small' }}"
+                        alt="{{ item.filter |escape }}"
+                        class="product_img"
+                        width=""
+                        height=""
+                      >
+                    {% else %}
+                      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg-tags' }}
+                    {% endif %}
+                  </a>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </form>
     </div>
   </div>
