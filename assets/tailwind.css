@@ -748,6 +748,23 @@ textarea {
   background-color: #1e7e34;
 }
 
+.Cart_meseg_section{
+  padding: 176px;
+  text-align: center;
+}
+.msg_headimg{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.ancharTag-link{
+  color: white;
+  background-color: blue;
+  font-size: 19px;
+  padding: 13px;
+  border: 2px solid #f4f2f2;
+}
+
+
 /* Responsive styling */
 @media (max-width: 768px) {
   .comment_form {

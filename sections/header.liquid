@@ -141,12 +141,12 @@
 
       <!-- Cart Button / Account Links if enabled -->
       <div class="hidden md:flex space-x-4">
-        <a class="whitespace-nowrap text-base" href="/cart">
+        <a class="whitespace-nowrap text-base" href="{{ routes.cart_url }}">
           {% render 'icon-shoping-bag' %}
         </a>
         {% if shop.customer_accounts_enabled %}
           {% if customer %}
-            <a href="/account" class="text-base text-gray-500 hover:text-gray-900">Account</a>
+            <a href="{{routes.accounts_url}}" class="text-base text-gray-500 hover:text-gray-900">Account</a>
             {{
               'logout'
               | customer_logout_link
