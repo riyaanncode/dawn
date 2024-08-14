@@ -11,7 +11,7 @@
         <table class="table-section">
           <thead class="table_head">
             <th class="table_th_tag">Product</th>
-            <th class="table_th_tag">Quality</th>
+            <th class="table_th_tag">Quantity</th>
             <th class="table_th_tag">Product Price</th>
           </thead>
           <tbody class="table-body">
@@ -35,10 +35,21 @@
 
                 <td class="tableData">
                   <a href="{{ item.url }}" class="product_title">{{ item.product.title | truncatewords: 4 }}</a>
-                <span class="table-span">{{ item.variant.title }}</span>
-                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="change-cart-url">Remove</a>
+                  <span class="table-span">{{ item.variant.title }}</span>
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="change-cart-url"
+                    >Remove</a
+                  >
                 </td>
-                <td></td>
+
+                <td class="product-quantity-cart">
+                  <input
+                    type="number"
+                    name="updates[]"
+                    value="{{ item.quantity }}"
+                    min="1"
+                    id="updates_{{ forloop.index }}"
+                  >
+                </td>
                 <td></td>
               </tr>
             {% endfor %}
