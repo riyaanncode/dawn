@@ -17,11 +17,11 @@
           <tbody class="table-body">
             {% for item in cart.items %}
               <tr class="table-row">
-                <td>
+                <td class="tableData">
                   <a href="{{ item.url }}">
                     {% if item.image %}
                       <img
-                        src="{{item.image |img_url:'small' }}"
+                        src="{{item.image | img_url:'small' }}"
                         alt="{{ item.filter |escape }}"
                         class="product_img"
                         width=""
@@ -32,7 +32,12 @@
                     {% endif %}
                   </a>
                 </td>
-                <td></td>
+
+                <td class="tableData">
+                  <a href="{{ item.url }}" class="product_title">{{ item.product.title | truncatewords: 4 }}</a>
+                <span class="table-span">{{ item.variant.title }}</span>
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="change-cart-url">Remove</a>
+                </td>
                 <td></td>
                 <td></td>
               </tr>
