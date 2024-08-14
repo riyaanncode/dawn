@@ -1,89 +1,92 @@
-{% if cart.item_count > 0 %}
-  <div class="cartsection">
-    <div class="cart_container">
-      <div class="cart_MEnu-container">
-        <h1 class="cartContainer_heading_section">Your Cart</h1>
-        <a class="ancharTag-link" href="{{ routes.all_products_collection_url }}"> Continue Shoping </a>
+
+  {% if cart.item_count > 0 %}
+    <div class="cartsection">
+      <div class="cart_container">
+        <div class="cart_MEnu-container">
+          <h1 class="cartContainer_heading_section">Your Cart</h1>
+          <a class="ancharTag-link" href="{{ routes.all_products_collection_url }}"> Continue Shoping </a>
+        </div>
       </div>
-    </div>
-    <div class="display_cart_item_Section">
-      <form action="{{ routes.cart_url }}" method="post" novalidate>
-        <table class="table-section">
-          <thead class="table_head">
-            <th class="table_th_tag">Product</th>
-            <th class="table_th_tag">Quantity</th>
-            <th class="table_th_tag">Product Price</th>
-          </thead>
-          <tbody class="table-body">
-            {% for item in cart.items %}
-              <tr class="table-row">
-                <td class="tableData">
-                  <a href="{{ item.url }}">
-                    {% if item.image %}
-                      <img
-                        src="{{item.image | img_url:'small' }}"
-                        alt="{{ item.filter |escape }}"
-                        class="product_img"
-                        width=""
-                        height=""
-                      >
-                    {% else %}
-                      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg-tags' }}
-                    {% endif %}
-                  </a>
-                </td>
+      <div class="display_cart_item_Section">
+        <form action="{{ routes.cart_url }}" method="post" novalidate>
+          <table class="table-section">
+            <thead class="table_head">
+              <th class="table_th_tag">Product</th>
+              <th class="table_th_tag">Quantity</th>
+              <th class="table_th_tag">Product Price</th>
+            </thead>
+            <tbody class="table-body">
+              {% for item in cart.items %}
+                <tr class="table-row">
+                  <td class="tableData">
+                    <a href="{{ item.url }}">
+                      {% if item.image %}
+                        <img
+                          src="{{item.image | img_url:'small' }}"
+                          alt="{{ item.filter |escape }}"
+                          class="product_img"
+                          width=""
+                          height=""
+                        >
+                      {% else %}
+                        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg-tags' }}
+                      {% endif %}
+                    </a>
+                  </td>
 
-                <td class="tableData">
-                  <a href="{{ item.url }}" class="product_title">{{ item.product.title | truncatewords: 4 }}</a>
-                  <span class="table-span">{{ item.variant.title }}</span>
-                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="change-cart-url"
-                    >Remove</a
-                  >
-                </td>
+                  <td class="tableData">
+                    <a href="{{ item.url }}" class="product_title">{{ item.product.title | truncatewords: 4 }}</a>
+                    <span class="table-span">{{ item.variant.title }}</span>
+                    <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="change-cart-url"
+                      >Remove</a
+                    >
+                  </td>
 
-                <td class="product-quantity-cart">
-                  <input
-                    type="number"
-                    name="updates[]"
-                    value="{{ item.quantity }}"
-                    min="1"
-                    id="updates_{{ forloop.index }}"
-                  >
-                </td>
-                <td class="cart_total_price">
-                  {{ item.line_price | money }}
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+                  <td class="product-quantity-cart">
+                    <input
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="1"
+                      id="updates_{{ forloop.index }}"
+                    >
+                  </td>
+                  <td class="cart_total_price">
+                    {{ item.line_price | money }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
 
-        <div class="text-area-sections">
-          <div class="text-area-container">
-            <div class="text-area-container-menu">
-              <label for="cart_notes" class="lable-text">Notes</label>
-              <textarea name="note" id="cart_notes" cols="30" rows="10" class="display_textArea_data"></textarea>
+          <div class="text-area-sections">
+            <div class="text-area-container">
+              <div class="text-area-container-menu">
+                <label for="cart_notes" class="lable-text">Notes</label>
+                <textarea name="note" id="cart_notes" cols="30" rows="10" class="display_textArea_data"></textarea>
+              </div>
+            </div>
+            <div class="subtotal-area-section">
+              <h3 class="subtottl">SubTotal:{{ cart.total_price }}</h3>
+              <button type="submit" name="update" class="update-button">Update</button>
+            </div>
+            <div class="checkout-section">
+              <button type="submit" name="checkout-button" class="checkout-button">Checkout</button>
             </div>
           </div>
-          <div class="subtotal-area-section">
-            <h3 class="subtottl">SubTotal:{{ cart.total_price }}</h3>
-            <button type="submit" name="update" class="update-button">Update</button>
-          </div>
-          <div class="checkout-section">
-            <button type="submit" name="checkout-button" class="checkout-button">Checkout</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-{% else %}
-  <div class="Cart_meseg_section">
-    <div class="Cart_MEnu_section">
-      <h1 class="msg_headimg">you cart empty</h1>
-      <div class="link-section-cart">
-        <a class="ancharTag-link" href="{{ routes.all_products_collection_url }}"> Continue Shoping </a>
+        </form>
       </div>
     </div>
-  </div>
-{% endif %}
+  {% else %}
+    <div class="Cart_meseg_section">
+      <div class="Cart_MEnu_section">
+        <h1 class="msg_headimg">you cart empty</h1>
+        <div class="link-section-cart">
+          <a class="ancharTag-link" href="{{ routes.all_products_collection_url }}"> Continue Shoping </a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+
+
