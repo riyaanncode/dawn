@@ -779,7 +779,7 @@ textarea {
   width: 1000vw;
   gap: 530px;
   /* padding-left: 69px; */
-  background-color: red;
+  /* background-color: red; */
   /* margin-left: 91px; */
   display: flex;
 
@@ -787,7 +787,7 @@ textarea {
 tr{
   text-align: center;
   display: flex;
-  gap: 500px;
+  gap: 475px;
   padding: 0px;
 }
 .table_th_tag{
