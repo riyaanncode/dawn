@@ -62,14 +62,14 @@
           </tbody>
         </table>
         <div class="contyyyyy">
-        <span class="text-area-sections">
+        {% comment %} <span class="text-area-sections">
           <div class="text-area-container">
             <div class="text-area-container-menu">
               <label for="cart_notes" class="lable-text">Notes</label>
               <textarea name="note" id="cart_notes" cols="30" rows="10" class="display_textArea_data"></textarea>
             </div>
           </div>
-        </span>
+        </span> {% endcomment %}
           <div class="subtotal-area-section">
             <h3 class="subtottl">SubTotal:{{ cart.total_price }}</h3>
             <button type="submit" name="update" class="update-button">Update</button>
