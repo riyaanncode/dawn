@@ -838,6 +838,81 @@ tr{
   text-align: center;
   font-size: 15px;
 }
+
+.text-area-sections {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the top */
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.text-area-container {
+  flex: 1;
+}
+
+.text-area-container-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.lable-text {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.display_textArea_data {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.subtotal-area-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.subtottl {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.update-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-button:hover {
+  background-color: #0056b3;
+}
+
+.checkout-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.checkout-button {
+  padding: 15px 30px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background-color: #218838;
+}
+
+
 /* Responsive styling */
 @media (max-width: 768px) {
   .comment_form {
