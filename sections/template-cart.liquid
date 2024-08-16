@@ -63,22 +63,17 @@
         </table>
         <hr>
         <div class="contyyyyy">
-        {% comment %} <span class="text-area-sections">
-          <div class="text-area-container">
-            <div class="text-area-container-menu">
-              <label for="cart_notes" class="lable-text">Notes</label>
-              <textarea name="note" id="cart_notes" cols="30" rows="10" class="display_textArea_data"></textarea>
-            </div>
-          </div>
-        </span> {% endcomment %}
+      
           <div class="subtotal-area-section">
-            <h3 class="subtottl">SubTotal:- {{ cart.total_price }}</h3>
+
+            
+            <h3 class="subtottl">SubTotal:- {{ cart.total_price |money }}</h3>
             </div>
             <div class="updte">
-              <button type="submit" name="update" class="update-button">Update</button>
+              <button type="update_button" name="update-button" class="update-button">Update</button>
             </div>
           <div class="checkout-section">
-            <button type="submit" name="checkout-button" class="checkout-button">Checkout</button>
+            <button type="checkout_button" name="checkout-button" class="checkout-button">Checkout</button>
           </div>
               </div>
       </form>
@@ -94,3 +89,27 @@
     </div>
   </div>
 {% endif %}
+{% schema %}
+  {
+   "name":"template-cart",
+   "blocks":[
+    {
+      "type":"subtotal",
+      "name":"subtotal",
+      "limit": 1
+    },
+    {
+    "type":"update_button",
+    "name":"update-button",
+    "limit": 1
+    },
+    {
+      "type":"checkout_button",
+      "name":"checkout-button",
+      "limit": 1
+    }
+   ]
+
+  }
+
+{% endschema %}

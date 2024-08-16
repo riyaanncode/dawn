@@ -1,7 +1,21 @@
 {
     "sections":{
         "template":{
-            "type": "template-cart"
+            "type": "template-cart",
+            "block":{
+                "subtotal":{
+                    "type":"subtotal",
+                },
+               "update-button": {
+                "type":"update_button"
+              },
+              "checkout-button" :{
+                "type":"checkout_button"
+              },
+            },
+            "block-order":["subtotal","update-button","checkout-button"]
+
+
         }
     },
     "order":["template"]

@@ -1,0 +1,17 @@
+{% paginate collection.products by 4 %}
+  {% for product in collection.products %}
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | img_url:'medium'}}"
+        alt="{{ product.featured_image.alt }}"
+        width=""
+        height=" "
+      >
+    {% endif %}
+    <a href="{{ product.url }}">{{ product.title }}</a>
+    <p>{{ product.price | money }}</p>
+    {% else %}
+    <p> no product available</p>
+  {% endfor %}
+  {% comment %} {% render 'pagination' ,pagination:paginate %} {% endcomment %}
+{% endpaginate %}
