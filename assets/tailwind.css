@@ -777,11 +777,9 @@ textarea {
 }
 .table_head{
   width: 1000vw;
-  gap: 530px;
-  /* padding-left: 69px; */
-  /* background-color: red; */
-  /* margin-left: 91px; */
-  display: flex;
+    gap: 530px;
+    display: flex;
+    height: 100vh;
 
 }
 tr{
@@ -793,6 +791,15 @@ tr{
 .table_th_tag{
   padding: 41px;
   font-size: 26px;
+}
+
+.product_img{
+  width: 50%;              /* Set the width to 50% of the container */
+  height: auto;            /* Maintain the aspect ratio */
+  max-width: 100%;         /* Ensure the image doesn't exceed the container width */
+  display: block;          /* Removes any space below the image */
+  object-fit: cover;       /* Ensures the image covers the container without distortion */
+  image-rendering: crisp-edges;
 }
 
 /* Responsive styling */
