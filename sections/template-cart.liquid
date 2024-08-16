@@ -36,7 +36,7 @@
                 </td>
                 <td class="tableData">
                   <a href="{{ item.url }}" class="product_title">{{ item.product.title | truncatewords: 4 }}</a>
-                  <span class="table-span">{{ item.variant.title }}</span>
+                  <span class="table-span">Size:{{ item.variant.title }}</span>
 
                   <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="change-cart-url"
                     >Remove</a
