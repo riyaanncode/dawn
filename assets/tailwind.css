@@ -812,6 +812,27 @@ tr{
   display: flex;
 
 }
+.tableData{
+  padding-top: 29px;
+    /* background-color: blue; */
+    width: 168px;
+}
+.product_title{
+  font-size: 20px;
+}
+.tableData{
+  width: 217px;
+}
+
+.product-quantity-cart{
+  margin-left: 27px;
+    height: 32px;
+    border: 2px solid black;
+    padding-left: 2px;
+}
+.cart_total_price{
+  padding-left: 478px;
+}
 /* Responsive styling */
 @media (max-width: 768px) {
   .comment_form {
