@@ -799,10 +799,8 @@ tr{
   height: auto;
   /* max-width: 100%; */
   display: block;            /* Removes any space below the image */
-  object-fit: cover;         /* Ensure the image covers the container without distortion */
-  image-rendering: crisp-edges; /* Sharpens the image, especially useful for pixel art or smaller images */
-  image-rendering: -webkit-optimize-contrast; /* For better image rendering on WebKit browsers */
-  image-rendering: pixelated;
+  transition: all 0.3s;
+  object-fit: cover;
 }
 .table-body{
   height: 100vh;
