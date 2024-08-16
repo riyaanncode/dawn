@@ -972,6 +972,30 @@ tr{
 }
 
 
+/* Responsive Design for Devices with max-width: 550px */
+@media (max-width: 550px) {
+  .collection-container {
+    grid-template-columns: 1fr; /* Switch to 1 column */
+  }
+
+  .collection_menu {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .collection_menu img {
+    padding-left: 0; /* Center the image without extra padding */
+    margin: 0 auto; /* Center the image */
+  }
+
+  .collection_menu a {
+    font-size: 14px; /* Slightly smaller text */
+  }
+
+  .collection_menu p {
+    font-size: 16px; /* Slightly smaller price text */
+  }
+}
+
 /* Responsive styling */
 @media (max-width: 768px) {
   .comment_form {
