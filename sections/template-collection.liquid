@@ -4,7 +4,19 @@
 {% paginate collection.products by 4 %}
   {% for product in collection.products %}
 <div class="collection_menu">
-{% render 'product-cart' %}
+    <div class="collection_menu_container">
+        {% if product.featured_image %}
+            <img
+              src="{{ product.featured_image | img_url:'medium'}}"
+              alt="{{ product.featured_image.alt }}"
+              width=""
+              height=" "
+            >
+          {% endif %}
+          <a href="{{ product.url }}">{{ product.title }}</a>
+          
+          <p>{{ product.price | money }}</p>
+    </div>
 </div>
   
   {% else %}
