@@ -934,7 +934,7 @@ tr{
 
 .collection-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-columns: repeat(2, 1fr); /* 3 columns */
   gap: 20px; /* space between the items */
 }
 
