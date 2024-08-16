@@ -3,8 +3,9 @@
     <div class="cart_container">
       <div class="cart_MEnu-container">
         <h1 class="cartContainer_heading_section">Your Cart</h1>
-        <a class="ancharTag-link" href="{{ routes.all_products_collection_url }}"> Continuesssss Shoping riya</a>
+        <a class="ancharTag-link-rigth" href="{{ routes.all_products_collection_url }}"> Continuesssss Shoping riya</a>
       </div>
+      <hr>
     </div>
     <div class="display_cart_item_Section">
       <form action="{{ routes.cart_url }}" method="post" novalidate>
@@ -24,15 +25,14 @@
                         src="{{item.image | img_url:'small' }}"
                         alt="{{ item.filter |escape }}"
                         class="product_img"
-                        width=""
-                        height=""
+                        width="50%"
+                        height="50%"
                       >
                     {% else %}
                       {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg-tags' }}
                     {% endif %}
                   </a>
                 </td>
-
                 <td class="tableData">
                   <a href="{{ item.url }}" class="product_title">{{ item.product.title | truncatewords: 4 }}</a>
                   <span class="table-span">{{ item.variant.title }}</span>
@@ -40,7 +40,6 @@
                     >Remove</a
                   >
                 </td>
-
                 <td class="product-quantity-cart">
                   <input
                     type="number"
@@ -57,7 +56,6 @@
             {% endfor %}
           </tbody>
         </table>
-
         <div class="text-area-sections">
           <div class="text-area-container">
             <div class="text-area-container-menu">

@@ -764,6 +764,36 @@ textarea {
   border: 2px solid #f4f2f2;
 }
 
+.cart_MEnu-container{
+  padding: 38px;
+  gap: 867px;
+  display: flex;
+}
+
+.cartContainer_heading_section{
+  /* background-color: blue; */
+  width: 292px;
+  font-size: 40px;
+}
+.table_head{
+  width: 1000vw;
+  gap: 530px;
+  /* padding-left: 69px; */
+  background-color: red;
+  /* margin-left: 91px; */
+  display: flex;
+
+}
+tr{
+  text-align: center;
+  display: flex;
+  gap: 500px;
+  padding: 0px;
+}
+.table_th_tag{
+  padding: 41px;
+  font-size: 26px;
+}
 
 /* Responsive styling */
 @media (max-width: 768px) {
