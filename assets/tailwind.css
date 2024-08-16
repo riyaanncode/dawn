@@ -888,7 +888,7 @@ tr{
   border-radius: 5px;
   cursor: pointer;
 }
-
+/* 
 .update-button:hover {
   background-color: #0056b3;
 }
@@ -910,7 +910,7 @@ tr{
 
 .checkout-button:hover {
   background-color: #218838;
-}
+} */
 
 
 /* Responsive styling */
