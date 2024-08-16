@@ -1,5 +1,6 @@
 <div class="collection-page">
 <div class="collection-section">
+ <div class="collection-container">
 {% paginate collection.products by 4 %}
   {% for product in collection.products %}
     {% if product.featured_image %}
@@ -18,5 +19,6 @@
   {% endfor %}
   {% comment %} {% render 'pagination' ,pagination:paginate %} {% endcomment %}
 {% endpaginate %}
+</div>
 </div>
 </div>
