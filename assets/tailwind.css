@@ -825,13 +825,18 @@ tr{
 }
 
 .product-quantity-cart{
+  border-radius: 11px;
   margin-left: 27px;
-    height: 32px;
-    border: 2px solid black;
-    padding-left: 2px;
+  height: 39px;
+  border: 2px solid black;
+  padding-left: 2px;
 }
 .cart_total_price{
   padding-left: 478px;
+}
+.quantity_in{
+  text-align: center;
+  font-size: 15px;
 }
 /* Responsive styling */
 @media (max-width: 768px) {
