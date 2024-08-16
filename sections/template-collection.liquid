@@ -2,6 +2,7 @@
 <div class="collection-section">
  <div class="collection-container">
 {% paginate collection.products by 4 %}
+<h1>{{ collection.title }}</h1>
   {% for product in collection.products %}
 <div class="collection_menu">
     <div class="collection_menu_container">
