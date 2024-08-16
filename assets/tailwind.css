@@ -779,7 +779,7 @@ textarea {
   width: 1000vw;
     gap: 530px;
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
 
 }
 tr{
@@ -794,15 +794,23 @@ tr{
 }
 
 .product_img{
-  width: 50%;              /* Set the width to 50% of the container */
-  height: auto;            /* Maintain the aspect ratio */
-  max-width: 100%;         /* Ensure the image doesn't exceed the container width */
-  display: block;          /* Removes any space below the image */
-  object-fit: cover;       /* Ensures the image covers the container without distortion */
+  margin-left: 20px;
+  width: 303px;
+  height: auto;
+  /* max-width: 100%; */
+  display: block;
+  object-fit: cover;
   image-rendering: crisp-edges;
 }
+.table-body{
+  height: 100vh;
+    width: 100vw;
+}
 .table-row{
+  margin-left: 20px;
+  gap: 20px;
   display: flex;
+
 }
 /* Responsive styling */
 @media (max-width: 768px) {
