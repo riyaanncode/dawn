@@ -22,24 +22,10 @@
           "settings": {
             "collection": "mycollection"
           }
-        },
-        "featured_collection_6WCdW8": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_DwNxw4": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
         }
       },
       "block_order": [
-        "featured_collection_DWtfcR",
-        "featured_collection_6WCdW8",
-        "featured_collection_DwNxw4"
+        "featured_collection_DWtfcR"
       ],
       "settings": {
         "title": "Collections",
