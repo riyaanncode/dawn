@@ -801,7 +801,9 @@ tr{
   object-fit: cover;       /* Ensures the image covers the container without distortion */
   image-rendering: crisp-edges;
 }
-
+.table-row{
+  display: flex;
+}
 /* Responsive styling */
 @media (max-width: 768px) {
   .comment_form {
