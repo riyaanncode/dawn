@@ -18,17 +18,7 @@
       <p>{{ product.price | money }}</p>
 </div>
 </div>
-    {% if product.featured_image %}
-      <img
-        src="{{ product.featured_image | img_url:'medium'}}"
-        alt="{{ product.featured_image.alt }}"
-        width=""
-        height=" "
-      >
-    {% endif %}
-    <a href="{{ product.url }}">{{ product.title }}</a>
-    
-    <p>{{ product.price | money }}</p>
+  
   {% else %}
     <p>no product available</p>
   {% endfor %}
