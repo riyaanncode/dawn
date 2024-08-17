@@ -23,10 +23,26 @@
         "button-label": "back to home page",
         "button_url": ""
       }
+    },
+    "collection_list_iMqNgh": {
+      "type": "collection-list",
+      "settings": {
+        "title": "Collections",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "header_hQ9Gmh",
-    "template"
+    "template",
+    "collection_list_iMqNgh"
   ]
 }
