@@ -1015,6 +1015,7 @@ tr{
 }
 
 .product-item img {
+  margin-left: 280px;
   max-width: 100%;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -1029,6 +1030,9 @@ tr{
 .product-item p {
   font-size: 0.9rem;
   color: #777;
+}
+.collection_menu_container{
+  text-align: center;
 }
 
 
