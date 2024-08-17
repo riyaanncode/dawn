@@ -7,7 +7,7 @@
 <div class="collection-page">
   <div class="collection-section">
     <div class="collection-container">
-      {% paginate collection.products by section.settings.number_of_product_per_page %}
+      {% paginate collection.products by section.settings.number_of_product_per_page   %}
         {% for product in collection.products %}
           <div class="collection_menu">
             {% comment %} <div class="collection_menu_container">
@@ -22,8 +22,7 @@
               <a href="{{ product.url }}">{{ product.title }}</a>
               <p>{{ product.price | money }}</p>
             </div> {% endcomment %}
-
-            {% render 'product-cart' ,product:product%}
+          {% render 'product-cart' ,product:product%}
           </div>
         {% else %}
           <p>no product available</p>
@@ -41,7 +40,7 @@
     {
       "type": "number",
       "id": "number_of_product_per_page",
-      "default": 3,
+      "default": 4,
       "label": "Number of products per page"
     }
   ]
