@@ -1035,6 +1035,35 @@ tr{
 
 /* Responsive Design for Devices with max-width: 550px */
 @media (max-width: 550px) {
+
+  .featured-collection-section {
+    padding: 15px; /* Reduced padding for smaller screens */
+  }
+
+  .title_ h1 {
+    font-size: 1.5rem; /* Smaller font size for the title */
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr; /* Change to 1 column layout */
+    gap: 15px; /* Reduced gap between items */
+  }
+
+  .product-item {
+    padding: 10px; /* Reduced padding for product items */
+    border-radius: 3px; /* Slightly smaller border radius */
+  }
+
+  .product-item h2 {
+    font-size: 1rem; /* Smaller font size for product titles */
+  }
+
+  .product-item p {
+    font-size: 0.8rem; /* Smaller font size for product descriptions */
+  }
+
+
+
   .collection-container {
     grid-template-columns: 1fr; /* Switch to 1 column */
   }
