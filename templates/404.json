@@ -26,6 +26,17 @@
     },
     "collection_list_iMqNgh": {
       "type": "collection-list",
+      "blocks": {
+        "featured_collection_PWBigY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mycollection"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_PWBigY"
+      ],
       "settings": {
         "title": "Collections",
         "heading_size": "h1",
