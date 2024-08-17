@@ -1,7 +1,14 @@
  {
-     "sections":{
+    "sections": {
+            "header_hgUPFL": {
+              "type": "header",
+              "settings": {
+                "menu": "main-menu"
+              }
+            },
      "template":{
-     "type": "template-collection"
+     "type": "template-list-collection",
+     "settings": {}
      }
      },
      "order":["template"]
