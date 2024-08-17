@@ -1,1 +1,22 @@
-just kinding
+1 <div class="flex flex-col items-center my-8">
+<h1 class="text-3x1 font-medium">
+ {{ section.settings.title}}
+    </h1>
+ </div>
+    
+ 
+ 
+ 
+ {% schema %}
+ {
+ "name": "Template List Collection",
+ "settings": [{
+
+ "type": "text",
+"id": "title",
+ "default": "Collections",
+"label": "Title"
+ }
+ ]
+ }
+ {% endschema %}
