@@ -1,9 +1,27 @@
-<div class="title_">
+{% comment %} <div class="title_">
 <h1>{{ section.settings.title }}</h1>
 </div>
 {% for product in section.settings.featured_collection.products %}
     {% render 'product-cart' ,product:product%}
-{% endfor %}
+{% endfor %} {% endcomment %}
+
+
+<div class="featured-collection-section">
+    <div class="title_">
+      <h1>{{ section.settings.title }}</h1>
+    </div>
+    <div class="products-grid">
+      {% for product in section.settings.featured_collection.products %}
+        <div class="product-item">
+          {% render 'product-cart', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+
+
+
 {% schema %}
 {
   "name": "Featured Collection",
