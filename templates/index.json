@@ -9,6 +9,12 @@
 */
 {
   "sections": {
+    "header_hgUPFL": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    },
     "featured-collection": {
       "type": "featured-collection",
       "settings": {
@@ -19,6 +25,7 @@
     }
   },
   "order": [
+    "header_hgUPFL",
     "featured-collection"
   ]
 }
