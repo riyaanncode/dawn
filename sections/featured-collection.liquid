@@ -1,11 +1,6 @@
-<div>
-<h1>{{ section.settings.title }}</h1>
-</div>
-
 {% for product in section.settings.featured_collection.products %}
     {% render 'product-cart' ,product:product%}
 {% endfor %}
-
 {% schema %}
 {
   "name": "Featured Collection",
@@ -19,9 +14,8 @@
     {
       "type": "collection",
       "id": "featured_collection",
-      "label": "collection"
+      "label": "Collection"
     },
-    
   ]
 }
 {% endschema %}
