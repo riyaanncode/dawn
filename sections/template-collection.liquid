@@ -4,7 +4,7 @@
 <div class="collection-page">
   <div class="collection-section">
     <div class="collection-container">
-      {% paginate collection.products by 10 %}
+      {% paginate collection.products by 20 %}
         {% for product in collection.products %}
           <div class="collection_menu">
             <div class="collection_menu_container">
@@ -20,7 +20,6 @@
               <p>{{ product.price | money }}</p>
             </div>
           </div>
-
         {% else %}
           <p>no product available</p>
         {% endfor %}
