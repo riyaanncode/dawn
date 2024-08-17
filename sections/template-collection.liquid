@@ -1,6 +1,7 @@
+<p>{{ collection.products_count }} products</p> <!-- Display the product count here -->
 <div class="collectionName">
   <h1>{{ collection.title}}</h1>
-  <p>{{ collection.products_count }} products</p> <!-- Display the product count here -->
+ 
 
 </div>
 <div class="collection-page">
@@ -9,7 +10,7 @@
       {% paginate collection.products by 20 %}
         {% for product in collection.products %}
           <div class="collection_menu">
-            <div class="collection_menu_container">
+            {% comment %} <div class="collection_menu_container">
               {% if product.featured_image %}
                 <img
                   src="{{ product.featured_image | img_url:'medium'}}"
@@ -20,7 +21,9 @@
               {% endif %}
               <a href="{{ product.url }}">{{ product.title }}</a>
               <p>{{ product.price | money }}</p>
-            </div>
+            </div> {% endcomment %}
+
+            {% render 'product-cart' ,product_product:product%}
           </div>
         {% else %}
           <p>no product available</p>
