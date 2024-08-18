@@ -1233,6 +1233,7 @@ tr{
 
 
   .page-Title {
+    text-align: center;
     font-size: 2.5rem; /* Adjust the size as needed */
     margin: 0;
 }
