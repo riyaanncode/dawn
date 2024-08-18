@@ -20,6 +20,45 @@
     {% endform %}
 </div>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+            let isValid = true;
+    
+            // Validate Name
+            const name = document.getElementById('contact_name');
+            if (name.value.trim() === '') {
+                isValid = false;
+                alert('Name is required.');
+                name.focus();
+            }
+    
+            // Validate Email
+            const email = document.getElementById('contact_email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value)) {
+                isValid = false;
+                alert('Please enter a valid email address.');
+                email.focus();
+            }
+    
+            // Validate Message
+            const message = document.getElementById('contact_message');
+            if (message.value.trim() === '') {
+                isValid = false;
+                alert('Message is required.');
+                message.focus();
+            }
+    
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
+    });
+    
+</script>
     
      {% schema %}
      {
