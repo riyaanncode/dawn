@@ -1512,3 +1512,86 @@ time[itemprop="dateCreated datePublished"] {
   }
 }
 
+
+/* General Form Container Styles */
+.form__container {
+  width: 100%;
+  max-width: 600px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Group Styles */
+.form__group {
+  margin-bottom: 15px;
+}
+
+/* Label Styles */
+.form__label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Input and Textarea Styles */
+.form__input,
+.form__textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.form__textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Submit Button Styles */
+.form__submit {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form__submit:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .form__container {
+      padding: 10px;
+  }
+
+  .form__label {
+      font-size: 12px;
+  }
+
+  .form__input,
+  .form__textarea {
+      font-size: 12px;
+      padding: 8px;
+  }
+
+  .form__submit {
+      padding: 8px;
+      font-size: 14px;
+  }
+}
+
