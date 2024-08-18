@@ -1,11 +1,12 @@
- {%- case media.media_type -%}
+{%- case media.media_type -%}
     {%- when 'image' -%}
-    <img src="{{ media |img_url : 'large' }}" class="imag_contenrt" width="" height="">
+        <img src="{{ media | img_url: 'large' }}" class="imag_contenrt" width="" height="">
     {%- when 'external-video' -%}
-        {{ media | external_video_tag class="external_vido" }}
-        {%- when 'video' -%}
-            {{ media | video_tag class="video-tag" }}
-            {%- when 'model' -%}
+        {{ media | external_video_tag: class: 'external_vido' }}
+    {%- when 'video' -%}
+        {{ media | video_tag: class: 'video-tag' }}
+    {%- when 'model' -%}
+        <!-- Add your model rendering code here if needed -->
     {%- else -%}
-        
-    {%- endcase -%} 
+        <!-- Handle other cases or leave empty -->
+    {%- endcase -%}
