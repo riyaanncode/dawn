@@ -1,1 +1,11 @@
-riya sonal
+ {%- case media.media_type -%}
+    {%- when 'image' -%}
+    <img src="{{ media |img_url : 'large' }}" class="imag_contenrt" width="" height="">
+    {%- when 'external-video' -%}
+        {{ media | external_video_tag class="external_vido" }}
+        {%- when 'video' -%}
+            {{ media | video_tag class="video-tag" }}
+            {%- when 'model' -%}
+    {%- else -%}
+        
+    {%- endcase -%} 
