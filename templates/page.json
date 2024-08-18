@@ -15,20 +15,20 @@
         "menu": "main-menu"
       }
     },
-    "template": {
-      "type": "template-page",
+    "contact_form_Ai8jTx": {
+      "type": "contact-form",
       "settings": {
       }
     },
-    "contact_form_Ai8jTx": {
-      "type": "contact-form",
+    "template": {
+      "type": "template-page",
       "settings": {
       }
     }
   },
   "order": [
     "header_ww34zb",
-    "template",
-    "contact_form_Ai8jTx"
+    "contact_form_Ai8jTx",
+    "template"
   ]
 }
