@@ -19,10 +19,16 @@
       "type": "template-page",
       "settings": {
       }
+    },
+    "contact_form_Ai8jTx": {
+      "type": "contact-form",
+      "settings": {
+      }
     }
   },
   "order": [
     "header_ww34zb",
-    "template"
+    "template",
+    "contact_form_Ai8jTx"
   ]
 }
