@@ -1,1 +1,15 @@
-hello riya
+<div class="product_media">
+    <div class="product_media_Section">
+        <div class="product_mediaContainer">
+            <div class="product_media_Conten">
+                {% for  media in product.media %}
+                    <div class="product_med">
+                    {% render 'product-media' ,media %}
+                    </div>
+
+                    {% endfor %}
+            
+            </div>
+        </div>
+    </div>
+</div>
