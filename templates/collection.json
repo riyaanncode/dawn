@@ -9,9 +9,16 @@
 */
 {
   "sections": {
+    "header_EzQcNj": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    },
     "template": {
       "type": "template-collection",
       "settings": {
+        "number_of_product_per_page": 4
       }
     },
     "collection_list_jdxfdh": {
@@ -42,6 +49,7 @@
     }
   },
   "order": [
+    "header_EzQcNj",
     "template",
     "collection_list_jdxfdh"
   ]
