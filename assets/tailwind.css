@@ -1230,11 +1230,10 @@ tr{
     
   }
 
-
-
-  .page-Title {
-    text-align: center;
-    font-size: 2.5rem; /* Adjust the size as needed */
+.page-Title {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
     margin: 0;
 }
 
