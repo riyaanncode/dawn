@@ -1232,10 +1232,18 @@ tr{
 
 
 
-  /* Base styles */
-.aboutUS_page {
+/* Cart Page Specific Styles */
+
+.cart-page {
   padding: 20px;
   font-family: Arial, sans-serif;
+}
+
+/* About Section Styles */
+.aboutUS_section {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
 }
 
 .title-contaner {
@@ -1248,23 +1256,14 @@ tr{
   color: #333;
 }
 
-.paragrepf {
-  margin: 0 auto;
-  max-width: 800px;
-  line-height: 1.6;
-}
-
 .page_Content {
   font-size: 1em;
   color: #666;
+  line-height: 1.6;
 }
 
-/* Responsive styles */
+/* Responsive Styles for About Section */
 @media (max-width: 768px) {
-  .title-contaner {
-      margin-bottom: 15px;
-  }
-
   .page-Ttile {
       font-size: 1.5em;
   }
@@ -1275,10 +1274,6 @@ tr{
 }
 
 @media (max-width: 480px) {
-  .title-contaner {
-      margin-bottom: 10px;
-  }
-
   .page-Ttile {
       font-size: 1.2em;
   }
@@ -1289,5 +1284,19 @@ tr{
 }
 
 
+.paragrepf {
+  background-color: #fff; /* Background color for the box */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+  padding: 20px; /* Space inside the box */
+  margin: 20px auto; /* Center the box and space out from other elements */
+  max-width: 800px; /* Maximum width of the box */
+}
 
+/* Content inside the Cart Box */
+.page_Content {
+  font-size: 1em; /* Font size */
+  color: #333; /* Text color */
+  line-height: 1.6; /* Line height for readability */
+}
   
