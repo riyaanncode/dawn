@@ -1515,13 +1515,15 @@ time[itemprop="dateCreated datePublished"] {
 
 /* General Form Container Styles */
 .form__container {
+  margin-left: 267px;
   width: 100%;
-  max-width: 600px;
-  padding: 15px;
-  background-color: #f9f9f9;
+  /* max-width: 600px; */
+  padding: 36px;
+  background-color: #e8e3e324;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px #0000001a;
+
 }
 
 /* Form Group Styles */
