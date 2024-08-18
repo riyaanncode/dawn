@@ -15,6 +15,11 @@
         "menu": "main-menu"
       }
     },
+    "contact_form_Ai8jTx": {
+      "type": "contact-form",
+      "settings": {
+      }
+    },
     "template": {
       "type": "template-page",
       "settings": {
@@ -23,6 +28,7 @@
   },
   "order": [
     "header_ww34zb",
+    "contact_form_Ai8jTx",
     "template"
   ]
 }
