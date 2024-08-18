@@ -1101,6 +1101,15 @@ tr{
 
 /* Media query for md breakpoint */
 @media (min-width: 768px) {
+
+  .page-Title {
+    font-size: 2rem;
+}
+
+.page_Content {
+    font-size: 1rem;
+    padding: 0 10px; /* Add some padding for smaller screens */
+}
   .md\\:flex {
     display: flex;
   }
@@ -1160,6 +1169,14 @@ tr{
   
 }
 @media screen and(max-width:486px){
+
+  .page-Title {
+    font-size: 1.5rem;
+}
+
+.page_Content {
+    font-size: 0.9rem;
+}
   .flex.justify-between.items-center.py-4{
   flex-wrap: wrap;
   display: flex;
@@ -1215,7 +1232,15 @@ tr{
 
 
 
+  .page-Title {
+    font-size: 2.5rem; /* Adjust the size as needed */
+    margin: 0;
+}
 
+.page_Content {
+    font-size: 1.2rem; /* Adjust the size as needed */
+    margin-top: 20px;
+}
 
 
   
