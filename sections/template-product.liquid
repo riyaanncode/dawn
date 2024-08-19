@@ -19,6 +19,10 @@
                 <div class="proudct_name">
                 <div>{{ product.title}}</div>
                 </div>
+
+                <div class="Product_Price">
+               <span> {{ product.selected_or_first_available_variant |money }}</span>
+                </div>
             
             {% endform %}
             </div>
