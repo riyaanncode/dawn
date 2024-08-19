@@ -4,7 +4,7 @@
             <div class="product_media_Conten">
                 {% for  media in product.media %}
                     <div class="product_med">
-                    {% render 'product-media' ,media %}
+                    {% render 'product-media' ,media:media %}
                     </div>
 
                     {% endfor %}
