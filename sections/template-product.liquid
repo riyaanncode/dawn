@@ -10,6 +10,15 @@
                     {% endfor %}
             
             </div>
+
+            <div class="product_Information">
+            {% form  'product',product%}
+                <div class="product_info">
+                <span class="product_vendor">{{ product.vendor }}</span>
+                </div>
+            
+            {% endform %}
+            </div>
         </div>
     </div>
 </div>
