@@ -57,12 +57,28 @@
             <input type="number" name='quantity' id="Quantitiy-{{ section.id }}" value="1">
         </div>
         </div>
+
+        <div class="product_Discription">
+            <p >{{ product.description }}</p>
+            </div>
+
+            <div class="add-to-cart-SEction">
+            <button type="submit" name="add" class="add-button" 
+            {% if product.selected_variant == false %}
+            disabled
+            {% endif %}
+            {% if product.selected_variant.available == false %}
+                SoldOut
+        {% else %}
+          Add To Cart
+        {% endif %}
+
+            ></button>
+            </div>
         {% endform %}
       </div>
     </div>
 
-    <div class="product_Discription">
-    <p >{{ product.description }}</p>
-    </div>
+   
   </div>
 </div>
