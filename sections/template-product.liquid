@@ -13,7 +13,7 @@
 
       <div class="product_Information">
         {% form 'product', product %}
-            <input type="hidden" name="id" value="{{ selected_variant.id }}">
+          <input type="hidden" name="id" value="{{ selected_variant.id }}">
           <div class="product_info">
             <span class="product_vendor">{{ product.vendor }}</span>
           </div>
@@ -36,50 +36,102 @@
                 {% for option in product.options_with_values %}
                   <label for="option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
                   <div class="option_value">
-                  <select 
-                    name="options[{{ option.name|escape }}]"
-                    id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                    class="op_vlu"
-                  >
-                    {% for  value in option.values %}
-                    <option value="{{value |escape}}">{{ value }}</option>
-                    {% endfor %}
-                
-                </select>
-                </div>
+                    <select
+                      name="options[{{ option.name|escape }}]"
+                      id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                      class="op_vlu"
+                    >
+                      {% for value in option.values %}
+                        <option value="{{value |escape}}">{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
                 {% endfor %}
               </div>
             {% endunless %}
           </div>
 
-    <div class="quantity_vlu">
-        <label for="Quantitiy-{{ section.id }}">Quantity</label>
-        <div class='input_qnty_vlu'>
-            <input type="number" name='quantity' id="Quantitiy-{{ section.id }}" value="1">
-        </div>
-        </div>
-
-        <div class="product_Discription">
-            <p >{{ product.description }}</p>
+          <div class="quantity_vlu">
+            <label for="Quantitiy-{{ section.id }}">Quantity</label>
+            <div class="input_qnty_vlu">
+              <input type="number" name="quantity" id="Quantitiy-{{ section.id }}" value="1">
             </div>
+          </div>
 
-            <div class="add-to-cart-SEction">
-            <button type="submit" name="add" class="add-button" 
-            {% if product.selected_variant == false %}
-            disabled
-            {% endif %}>
-            {% if product.selected_variant.available == false %}
+          <div class="product_Discription">
+            <p>{{ product.description }}</p>
+          </div>
+
+          <div class="add-to-cart-SEction">
+            <button
+              type="submit"
+              name="add"
+              class="add-button"
+              {% if product.selected_variant == false %}
+                disabled
+              {% endif %}
+            >
+              {% if product.selected_variant.available == false %}
                 SoldOut
-        {% else %}
-          Add To Cart
-        {% endif %}
-
+              {% else %}
+                Add To Cart
+              {% endif %}
             </button>
-            </div>
+          </div>
         {% endform %}
       </div>
     </div>
-
-   
   </div>
 </div>
+
+
+{% schema %}
+{
+"name": "Product",
+"blocks": [
+    {
+       "type":"vendor" ,
+       "name":"Vendor",
+       "limit":1
+
+},
+{
+    "type":"title" ,
+    "name":"Title",
+    "limit":1
+
+},
+{
+    "type":"price" ,
+    "name":"Price",
+    "limit":1
+
+},
+{
+    "type":"variant_selector" ,
+    "name":"Variant Selector",
+    "limit":1
+
+},
+{
+    "type":"quantity" ,
+    "name":"Quantity",
+    "limit":1
+
+},
+{
+    "type":"description" ,
+    "name":"Description",
+    "limit":1
+
+},
+{
+    "type":"checkout_button" ,
+    "name":"Checkout Button",
+    "limit":1
+
+}
+
+]
+}
+{% endschema %}
