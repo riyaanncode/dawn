@@ -52,6 +52,10 @@
                             {% endfor %}
                           </select>
                         </div>
+
+                        <script type="application/json">
+                          {{ product.variants |json }}
+                        </script>
                       {% endfor %}
                     </variant-selector>
                   {% endunless %}
@@ -99,27 +103,6 @@
   class VariantSelector extends HTMLElement {
     constructor() {
       super();
-      this.addEventListener('change', this.onVariantChange);
-    }
-
-    onVariantChange() {
-      this.getSelectedOptions();
-
-      console.log('Variant selector change');
-    }
-    getSelectedOptions() {
-      this.options = Array.form(this.querySelectorAll('select'), (select) => select.value);
-      console.log(this.options);
-    }
-  }
-
-  customElements.define('variant-selector', VariantSelector);
-</script> {% endcomment %}
-
-<script>
-  class VariantSelector extends HTMLElement {
-    constructor() {
-      super();
       this.addEventListener('change', this.onVariantChange.bind(this));
     }
 
@@ -132,6 +115,78 @@
     getSelectedOptions() {
       this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
       console.log(this.options);
+    }
+    getVariantJSON() {
+      this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+      return this.variantData;
+    }
+
+    getSelectdVariant(){
+    this.currentVariant = this.getVariantJSON().find(
+      (variant)=>{
+      const findings = !variant.options.map(
+        (option,index)=>{
+        
+        this.options[index]===option;
+      }).includes(false);
+      
+      if(findings) return  variant;
+      }
+    );
+    console.log(this.currentVariant)
+    }
+  }
+
+  customElements.define('variant-selector', VariantSelector);
+</script> {% endcomment %}
+
+<script>
+  class VariantSelector extends HTMLElement {
+    constructor() {
+      super();
+      this.variantData = null; // Cache the variant data
+      this.options = [];       // Initialize selected options array
+      this.currentVariant = null; // Initialize current variant
+      this.addEventListener('change', this.onVariantChange.bind(this));
+    }
+
+    onVariantChange() {
+      this.getSelectedOptions();
+      this.getSelectedVariant();
+      console.log('Variant selector change');
+    }
+
+    getSelectedOptions() {
+      this.options = Array.from(this.querySelectorAll('select'), select => select.value);
+      console.log('Selected Options:', this.options);
+    }
+
+    getVariantJSON() {
+      if (!this.variantData) {
+        const variantJsonElement = this.querySelector('[type="application/json"]');
+        if (variantJsonElement) {
+          this.variantData = JSON.parse(variantJsonElement.textContent);
+        } else {
+          console.error('Variant JSON not found');
+          return null;
+        }
+      }
+      return this.variantData;
+    }
+
+    getSelectedVariant() {
+      const variantData = this.getVariantJSON();
+      if (!variantData) return;
+
+      this.currentVariant = variantData.find(variant => 
+        variant.options.every((option, index) => option === this.options[index])
+      );
+
+      if (this.currentVariant) {
+        console.log('Selected Variant:', this.currentVariant);
+      } else {
+        console.log('No matching variant found');
+      }
     }
   }
 
