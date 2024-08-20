@@ -1,38 +1,57 @@
 {% assign selected_variant = product.selected_or_first_available_variant %}
 
 <div class="product_media">
-    <div class="product_media_Section">
-        <div class="product_mediaContainer">
-            <div class="product_media_Conten">
-                {% for  media in product.media %}
-                    <div class="product_med">
-                    {% render 'product-media' ,media:media %}
-                    </div>
+  <div class="product_media_Section">
+    <div class="product_mediaContainer">
+      <div class="product_media_Conten">
+        {% for media in product.media %}
+          <div class="product_med">
+            {% render 'product-media', media: media %}
+          </div>
+        {% endfor %}
+      </div>
 
-                    {% endfor %}
-            
-            </div>
+      <div class="product_Information">
+        {% form 'product', product %}
+          <div class="product_info">
+            <span class="product_vendor">{{ product.vendor }}</span>
+          </div>
+          <div class="proudct_name">
+            <div>{{ product.title }}</div>
+          </div>
 
-            <div class="product_Information">
-            {% form  'product',product%}
-                <div class="product_info">
-                <span class="product_vendor">{{ product.vendor }}</span>
-                </div>
-                <div class="proudct_name">
-                <div>{{ product.title}}</div>
-                </div>
+          <div class="Product_Price">
+            <span> {{ selected_variant.compare_at_price | money }}</span>
+            <span>{{ selected_variant.price | money }}</span>
 
-                <div class="Product_Price">
-               <span> {{selected_variant.compare_at_price |money }}</span>
-               <span>{{ selected_variant.price |money }}</span>
-
-               {% if selected_variant.price <selected_variant.compare_at_price %}
-               Sale
+            {% if selected_variant.price < selected_variant.compare_at_price %}
+              Sale
             {% endif %}
+          </div>
+
+          <div class="Seclected_section">
+            {% unless product.has_only_default_variant %}
+              <div data-url="{{ product.url }}" data-section="{{ section.id }}">
+                {% for option in product.options_with_values %}
+                  <label for="option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
+                  <div class="option_value">
+                  <select 
+                    name="options[{{ option.name|escape }}]"
+                    id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                    class="op_vlu"
+                  >
+                    {% for  value in option.values %}
+                    <option value="{{value |escape}}">{{ value }}</option>
+                    {% endfor %}
+                
+                </select>
                 </div>
-            
-            {% endform %}
-            </div>
-        </div>
+                {% endfor %}
+              </div>
+            {% endunless %}
+          </div>
+        {% endform %}
+      </div>
     </div>
+  </div>
 </div>
