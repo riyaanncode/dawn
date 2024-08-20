@@ -1,1 +1,11 @@
-hel
+{% paginate search.results by 9 %}
+{% for item in search.results %}
+{%- case item.object_type -%}
+    {%- when 'product' -%}
+        {% render 'product-cart',product:item %}
+        
+    {%- else -%}
+        
+    {%- endcase -%}
+ {% endfor %}
+{% endpaginate %}
