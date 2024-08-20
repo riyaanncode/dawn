@@ -49,9 +49,12 @@
           {% endif %}
         {% endfor %}
       </div>
-         <div class="search_option-Section">{% render 'icon-search' %}</div>
+         
       <!-- Cart Button / Account Links if enabled -->
       <div class="hidden md:flex space-x-4">
+
+        <button class="search_option-Section">{% render 'icon-search' %}</button>
+
         <a class="whitespace-nowrap text-base" href="{{ routes.cart_url }}">
           {% render 'icon-shoping-bag' %}
         </a>
@@ -123,6 +126,16 @@
     }
   </style>
 {% endcomment %}
+<!-- JavaScript to handle the button click -->
 <script>
-  console.log('hello');
+  document.addEventListener('DOMContentLoaded', () => {
+    // Select the button element
+    const searchButton = document.querySelector('.search_option-Section');
+
+    // Add click event listener to the button
+    searchButton.addEventListener('click', () => {
+      // Display alert when button is clicked
+      alert('Hello, World!');
+    });
+  });
 </script>
