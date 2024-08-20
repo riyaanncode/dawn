@@ -99,53 +99,55 @@
   </div>
 </div>
 
-{% comment %} <script>
-  class VariantSelector extends HTMLElement {
-    constructor() {
-      super();
-      this.addEventListener('change', this.onVariantChange.bind(this));
-    }
-
-    onVariantChange() {
-      this.getSelectedOptions();
-
-      console.log('Variant selector change');
-    }
-
-    getSelectedOptions() {
-      this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
-      console.log(this.options);
-    }
-    getVariantJSON() {
-      this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
-      return this.variantData;
-    }
-
-    getSelectdVariant(){
-    this.currentVariant = this.getVariantJSON().find(
-      (variant)=>{
-      const findings = !variant.options.map(
-        (option,index)=>{
-        
-        this.options[index]===option;
-      }).includes(false);
-      
-      if(findings) return  variant;
+{% comment %}
+  <script>
+    class VariantSelector extends HTMLElement {
+      constructor() {
+        super();
+        this.addEventListener('change', this.onVariantChange.bind(this));
       }
-    );
-    console.log(this.currentVariant)
-    }
-  }
 
-  customElements.define('variant-selector', VariantSelector);
-</script> {% endcomment %}
+      onVariantChange() {
+        this.getSelectedOptions();
+
+        console.log('Variant selector change');
+      }
+
+      getSelectedOptions() {
+        this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+        console.log(this.options);
+      }
+      getVariantJSON() {
+        this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+        return this.variantData;
+      }
+
+      getSelectdVariant(){
+      this.currentVariant = this.getVariantJSON().find(
+        (variant)=>{
+        const findings = !variant.options.map(
+          (option,index)=>{
+
+          this.options[index]===option;
+        }).includes(false);
+
+        if(findings) return  variant;
+        }
+      );
+      console.log(this.currentVariant)
+      }
+    }
+
+    customElements.define('variant-selector', VariantSelector);
+  </script>
+{% endcomment %}
 
 <script>
   class VariantSelector extends HTMLElement {
     constructor() {
       super();
       this.variantData = null; // Cache the variant data
-      this.options = [];       // Initialize selected options array
+      this.options = []; // Initialize selected options array
       this.currentVariant = null; // Initialize current variant
       this.addEventListener('change', this.onVariantChange.bind(this));
     }
@@ -153,11 +155,14 @@
     onVariantChange() {
       this.getSelectedOptions();
       this.getSelectedVariant();
+      if(this.currentVariant){
+         this.updateURL();
+      }
       console.log('Variant selector change');
     }
 
     getSelectedOptions() {
-      this.options = Array.from(this.querySelectorAll('select'), select => select.value);
+      this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
       console.log('Selected Options:', this.options);
     }
 
@@ -178,7 +183,7 @@
       const variantData = this.getVariantJSON();
       if (!variantData) return;
 
-      this.currentVariant = variantData.find(variant => 
+      this.currentVariant = variantData.find((variant) =>
         variant.options.every((option, index) => option === this.options[index])
       );
 
@@ -188,11 +193,14 @@
         console.log('No matching variant found');
       }
     }
+    updateURL() {
+      if (!this.currentVariant) return;
+      window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+    }
   }
 
   customElements.define('variant-selector', VariantSelector);
 </script>
-
 
 {% schema %}
 {
