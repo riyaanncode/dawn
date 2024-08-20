@@ -38,7 +38,7 @@
               {% when 'variant_selector' %}
                 <div class="Seclected_section">
                   {% unless product.has_only_default_variant %}
-                    <div data-url="{{ product.url }}" data-section="{{ section.id }}">
+                    <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         <label for="option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
                         <div class="option_value">
@@ -53,7 +53,7 @@
                           </select>
                         </div>
                       {% endfor %}
-                    </div>
+                    </variant-selector>
                   {% endunless %}
                 </div>
 
@@ -94,6 +94,25 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  class = VariantSelector extends HTMLElement{
+    constructor(){
+    super();
+    this.addEventListener("change",this.onVariantchange())
+    }
+
+    onVariantchange(){
+      console.log("variant selector change")
+    
+    }
+  
+  }
+
+customElements.define("variant-selector",VariantSelector)
+</script>
+
 
 {% schema %}
 {
