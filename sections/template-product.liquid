@@ -51,7 +51,7 @@
             {% endunless %}
           </div>
 
-          <div class="quantity_vlu">
+    <div class="quantity_vlu">
         <label for="Quantitiy-{{ section.id }}">Quantity</label>
         <div class='input_qnty_vlu'>
             <input type="number" name='quantity' id="Quantitiy-{{ section.id }}" value="1">
@@ -59,6 +59,10 @@
         </div>
         {% endform %}
       </div>
+    </div>
+
+    <div class="product_Discription">
+    <p >{{ product.description }}</p>
     </div>
   </div>
 </div>
