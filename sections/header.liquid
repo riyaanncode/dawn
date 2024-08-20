@@ -53,16 +53,19 @@
       <!-- Cart Button / Account Links if enabled -->
       <div class="hidden md:flex space-x-4">
 
-        <button class="search_option-Section" id="search-button">
-          {% render 'icon-search' %}
-        </button>
+         <!-- Button with search icon -->
+  <button class="search_option-Section" id="search-button">
+    {% render 'icon-search' %}
+  </button>
+
+  <!-- Popup overlay -->
+  <div class="popup-overlay" id="search-popup">
+    <div class="popup-content">
+      <input type="text" id="search-input" class="search-input" placeholder="Search...">
+      <button class="close-popup" id="close-popup">Close</button>
+    </div>
+  </div>
       
-        <!-- Hidden search input box -->
-        <input type="text" id="search-input" class="search-input" placeholder="Search...">
-        
-        <button class="search_option-Section" id="search-button">
-          {% render 'icon-search' %}
-        </button>
         {% comment %} <button class="search_option-Section">{% render 'icon-search' %}</button> {% endcomment %}
 
         <a class="whitespace-nowrap text-base" href="{{ routes.cart_url }}">
@@ -118,46 +121,80 @@
 {% endschema %}
 
 <script>
-  // Wait until the DOM is fully loaded
   document.addEventListener('DOMContentLoaded', () => {
-    // Get the search button and input box
     const searchButton = document.getElementById('search-button');
-    const searchInput = document.getElementById('search-input');
+    const searchPopup = document.getElementById('search-popup');
+    const closePopup = document.getElementById('close-popup');
 
-    // Check if the search input exists before proceeding
-    if (searchInput) {
-      // Add a click event listener to the search button
-      searchButton.addEventListener('click', () => {
-        // Toggle the display of the search input
-        if (searchInput.style.display === 'none' || searchInput.style.display === '') {
-          searchInput.style.display = 'inline-block';
-          searchInput.focus(); // Automatically focus on the input box
-        } else {
-          searchInput.style.display = 'none';
-        }
-      });
-    } else {
-      console.error('Search input element not found');
-    }
+    // Show the popup when the search button is clicked
+    searchButton.addEventListener('click', () => {
+      searchPopup.style.display = 'flex';
+      document.getElementById('search-input').focus(); // Focus on the input box
+    });
+
+    // Close the popup when the close button is clicked
+    closePopup.addEventListener('click', () => {
+      searchPopup.style.display = 'none';
+    });
+
+    // Close the popup when clicking outside of the popup content
+    searchPopup.addEventListener('click', (event) => {
+      if (event.target === searchPopup) {
+        searchPopup.style.display = 'none';
+      }
+    });
   });
 </script>
 
 <style>
-  /* Styling for the search input box */
-  .search-input {
-    width: 200px;
-    padding: 5px 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-left: 10px;
-    display: none; /* Initially hidden */
-  }
-
+  /* Basic styling for the search button */
   .search_option-Section {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
+  }
+
+  /* Styling for the popup modal */
+  .popup-overlay {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  /* Close button styling */
+  .close-popup {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    color: #555;
   }
 </style>
