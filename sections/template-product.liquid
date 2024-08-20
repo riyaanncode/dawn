@@ -95,22 +95,47 @@
   </div>
 </div>
 
-
-<script>
-  class = VariantSelector extends HTMLElement{
-    constructor(){
-    super();
-    this.addEventListener("change",this.onVariantchange)
+{% comment %} <script>
+  class VariantSelector extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener('change', this.onVariantChange);
     }
 
-    onVariantchange(){
-      console.log("variant selector change")
-    
+    onVariantChange() {
+      this.getSelectedOptions();
+
+      console.log('Variant selector change');
     }
-  
+    getSelectedOptions() {
+      this.options = Array.form(this.querySelectorAll('select'), (select) => select.value);
+      console.log(this.options);
+    }
   }
 
-customElements.define("variant-selector",VariantSelector)
+  customElements.define('variant-selector', VariantSelector);
+</script> {% endcomment %}
+
+<script>
+  class VariantSelector extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener('change', this.onVariantChange.bind(this));
+    }
+
+    onVariantChange() {
+      this.getSelectedOptions();
+
+      console.log('Variant selector change');
+    }
+
+    getSelectedOptions() {
+      this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+      console.log(this.options);
+    }
+  }
+
+  customElements.define('variant-selector', VariantSelector);
 </script>
 
 
