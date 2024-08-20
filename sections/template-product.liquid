@@ -66,14 +66,14 @@
             <button type="submit" name="add" class="add-button" 
             {% if product.selected_variant == false %}
             disabled
-            {% endif %}
+            {% endif %}>
             {% if product.selected_variant.available == false %}
                 SoldOut
         {% else %}
           Add To Cart
         {% endif %}
 
-            ></button>
+            </button>
             </div>
         {% endform %}
       </div>
