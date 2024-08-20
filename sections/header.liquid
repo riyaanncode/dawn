@@ -52,6 +52,14 @@
          
       <!-- Cart Button / Account Links if enabled -->
       <div class="hidden md:flex space-x-4">
+
+        <button class="search_option-Section" id="search-button">
+          {% render 'icon-search' %}
+        </button>
+      
+        <!-- Hidden search input box -->
+        <input type="text" id="search-input" class="search-input" placeholder="Search...">
+        
         <button class="search_option-Section" id="search-button">
           {% render 'icon-search' %}
         </button>
@@ -109,26 +117,30 @@
 }
 {% endschema %}
 
-
 <script>
+  // Wait until the DOM is fully loaded
   document.addEventListener('DOMContentLoaded', () => {
+    // Get the search button and input box
     const searchButton = document.getElementById('search-button');
     const searchInput = document.getElementById('search-input');
 
-    // Toggle the display of the search input when the button is clicked
-    searchButton.addEventListener('click', () => {
-      if (searchInput.style.display === 'none' || searchInput.style.display === '') {
-        searchInput.style.display = 'inline-block';
-        searchInput.focus(); // Focus on the input when displayed
-      } else {
-        searchInput.style.display = 'none';
-      }
-    });
+    // Check if the search input exists before proceeding
+    if (searchInput) {
+      // Add a click event listener to the search button
+      searchButton.addEventListener('click', () => {
+        // Toggle the display of the search input
+        if (searchInput.style.display === 'none' || searchInput.style.display === '') {
+          searchInput.style.display = 'inline-block';
+          searchInput.focus(); // Automatically focus on the input box
+        } else {
+          searchInput.style.display = 'none';
+        }
+      });
+    } else {
+      console.error('Search input element not found');
+    }
   });
 </script>
-
-
-
 
 <style>
   /* Styling for the search input box */
@@ -139,6 +151,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-left: 10px;
+    display: none; /* Initially hidden */
   }
 
   .search_option-Section {
