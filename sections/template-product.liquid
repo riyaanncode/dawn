@@ -13,6 +13,7 @@
 
       <div class="product_Information">
         {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ selected_variant.id }}">
           <div class="product_info">
             <span class="product_vendor">{{ product.vendor }}</span>
           </div>
