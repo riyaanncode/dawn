@@ -142,65 +142,139 @@
   </script>
 {% endcomment %}
 
-<script>
-  class VariantSelector extends HTMLElement {
-    constructor() {
-      super();
-      this.variantData = null; // Cache the variant data
-      this.options = []; // Initialize selected options array
-      this.currentVariant = null; // Initialize current variant
-      this.addEventListener('change', this.onVariantChange.bind(this));
-    }
-
-    onVariantChange() {
-      this.getSelectedOptions();
-      this.getSelectedVariant();
-      if(this.currentVariant){
-         this.updateURL();
+  {% comment %} <script>
+    class VariantSelector extends HTMLElement {
+      constructor() {
+        super();
+        this.variantData = null; // Cache the variant data
+        this.options = []; // Initialize selected options array
+        this.currentVariant = null; // Initialize current variant
+        this.addEventListener('change', this.onVariantChange.bind(this));
       }
-      console.log('Variant selector change');
-    }
 
-    getSelectedOptions() {
-      this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
-      console.log('Selected Options:', this.options);
-    }
+      onVariantChange() {
+        this.getSelectedOptions();
+        this.getSelectedVariant();
+        if(this.currentVariant){
+          this.updateURL();
+        }
+        console.log('Variant selector change');
+      }
 
-    getVariantJSON() {
-      if (!this.variantData) {
-        const variantJsonElement = this.querySelector('[type="application/json"]');
-        if (variantJsonElement) {
-          this.variantData = JSON.parse(variantJsonElement.textContent);
+      getSelectedOptions() {
+        this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+        console.log('Selected Options:', this.options);
+      }
+
+      getVariantJSON() {
+        if (!this.variantData) {
+          const variantJsonElement = this.querySelector('[type="application/json"]');
+          if (variantJsonElement) {
+            this.variantData = JSON.parse(variantJsonElement.textContent);
+          } else {
+            console.error('Variant JSON not found');
+            return null;
+          }
+        }
+        return this.variantData;
+      }
+
+      getSelectedVariant() {
+        const variantData = this.getVariantJSON();
+        if (!variantData) return;
+
+        this.currentVariant = variantData.find((variant) =>
+          variant.options.every((option, index) => option === this.options[index])
+        );
+
+        if (this.currentVariant) {
+          console.log('Selected Variant:', this.currentVariant);
         } else {
-          console.error('Variant JSON not found');
-          return null;
+          console.log('No matching variant found');
         }
       }
-      return this.variantData;
-    }
-
-    getSelectedVariant() {
-      const variantData = this.getVariantJSON();
-      if (!variantData) return;
-
-      this.currentVariant = variantData.find((variant) =>
-        variant.options.every((option, index) => option === this.options[index])
-      );
-
-      if (this.currentVariant) {
-        console.log('Selected Variant:', this.currentVariant);
-      } else {
-        console.log('No matching variant found');
+      updateURL() {
+        if (!this.currentVariant) return;
+        window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
       }
     }
-    updateURL() {
-      if (!this.currentVariant) return;
-      window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
-    }
-  }
 
-  customElements.define('variant-selector', VariantSelector);
-</script>
+    customElements.define('variant-selector', VariantSelector);
+  </script> {% endcomment %}
+
+  <script>
+    class VariantSelector extends HTMLElement {
+      constructor() {
+        super();
+        // Initialize properties
+        this.variantData = null;
+        this.options = [];
+        this.currentVariant = null;
+  
+        // Bind event listeners
+        this.addEventListener('change', this.onVariantChange.bind(this));
+      }
+  
+      // Handles the variant change event
+      onVariantChange() {
+        this.getSelectedOptions();
+        this.getSelectedVariant();
+        if (this.currentVariant) {
+          this.updateURL();
+        }
+        console.log('Variant selector change');
+      }
+  
+      // Fetches the selected options from the <select> elements
+      getSelectedOptions() {
+        this.options = Array.from(this.querySelectorAll('select'), select => select.value);
+        console.log('Selected Options:', this.options);
+      }
+  
+      // Retrieves the variant JSON data from the page
+      getVariantJSON() {
+        if (!this.variantData) {
+          const variantJsonElement = this.querySelector('[type="application/json"]');
+          if (variantJsonElement) {
+            this.variantData = JSON.parse(variantJsonElement.textContent);
+          } else {
+            console.error('Variant JSON not found');
+            return null;
+          }
+        }
+        return this.variantData;
+      }
+  
+      // Finds the matching variant based on selected options
+      getSelectedVariant() {
+        const variantData = this.getVariantJSON();
+        if (!variantData) return;
+  
+        this.currentVariant = variantData.find(variant => 
+          variant.options.every((option, index) => option === this.options[index])
+        );
+  
+        if (this.currentVariant) {
+          console.log('Selected Variant:', this.currentVariant);
+        } else {
+          console.log('No matching variant found');
+        }
+      }
+  
+      // Updates the URL with the selected variant ID
+      updateURL() {
+        if (!this.currentVariant) return;
+  
+        const newUrl = `${this.dataset.url}?variant=${this.currentVariant.id}`;
+        window.history.replaceState({}, '', newUrl);
+        console.log('URL Updated:', newUrl);
+      }
+    }
+  
+    // Define the custom element
+    customElements.define('variant-selector', VariantSelector);
+  </script>
+  
 
 {% schema %}
 {
