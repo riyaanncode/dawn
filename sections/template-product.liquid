@@ -1,6 +1,181 @@
 {% assign selected_variant = product.selected_or_first_available_variant %}
 
-{% comment %} <div class="product_media">
+{% comment %}
+  <div class="product_media">
+    <div class="product_media_Section">
+      <div class="product_mediaContainer">
+        <div class="product_media_Conten">
+          {% for media in product.media %}
+            <div class="product_med">
+              {% render 'product-media', media: media %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="product_Information">
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ selected_variant.id }}">
+            {% for block in section.blocks %}
+              {%- case block.type -%}
+                {%- when 'vendor' -%}
+                  <div class="product_info">
+                    <span class="product_vendor">{{ product.vendor }}</span>
+                  </div>
+
+                {%- when 'title' -%}
+                  <div class="proudct_name">
+                    <div>{{ product.title }}</div>
+                  </div>
+                {%- when 'price' -%}
+                  <div class="Product_Price">
+                    <span> {{ selected_variant.compare_at_price | money }}</span>
+                    <span>{{ selected_variant.price | money }}</span>
+
+                    {% if selected_variant.price < selected_variant.compare_at_price %}
+                      Sale
+                    {% endif %}
+                  </div>
+
+                {% when 'variant_selector' %}
+                  <div class="Seclected_section">
+                    {% unless product.has_only_default_variant %}
+                      <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
+                        {% for option in product.options_with_values %}
+                          <label for="option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
+                          <div class="option_value">
+                            <select
+                              name="options[{{ option.name|escape }}]"
+                              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                              class="op_vlu"
+                            >
+                              {% for value in option.values %}
+                                <option value="{{value |escape}}">{{ value }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+
+                          <script type="application/json">
+                            {{ product.variants |json }}
+                          </script>
+                        {% endfor %}
+                      </variant-selector>
+                    {% endunless %}
+                  </div>
+
+                {% when 'quantity' %}
+                  <div class="quantity_vlu">
+                    <label for="Quantitiy-{{ section.id }}">Quantity</label>
+                    <div class="input_qnty_vlu">
+                      <input type="number" name="quantity" id="Quantitiy-{{ section.id }}" value="1">
+                    </div>
+                  </div>
+                {% when 'description' %}
+                  <div class="product_Discription">
+                    <p>{{ product.description }}</p>
+                  </div>
+                {% when 'checkout_button' %}
+                  <div class="add-to-cart-SEction">
+                    <button
+                      type="submit"
+                      name="add"
+                      class="add-button"
+                      {% if product.selected_variant == false %}
+                        disabled
+                      {% endif %}
+                    >
+                      {% if product.selected_variant.available == false %}
+                        SoldOut
+                      {% else %}
+                        Add To Cart
+                      {% endif %}
+                    </button>
+                  </div>
+
+                {%- else -%}
+              {%- endcase -%}
+            {% endfor %}
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <script>
+      class VariantSelector extends HTMLElement {
+        constructor() {
+          super();
+          // Initialize properties
+          this.variantData = null;
+          this.options = [];
+          this.currentVariant = null;
+
+          // Bind event listeners
+          this.addEventListener('change', this.onVariantChange.bind(this));
+        }
+
+        // Handles the variant change event
+        onVariantChange() {
+          this.getSelectedOptions();
+          this.getSelectedVariant();
+          if (this.currentVariant) {
+            this.updateURL();
+          }
+          console.log('Variant selector change');
+        }
+
+        // Fetches the selected options from the <select> elements
+        getSelectedOptions() {
+          this.options = Array.from(this.querySelectorAll('select'), select => select.value);
+          console.log('Selected Options:', this.options);
+        }
+
+        // Retrieves the variant JSON data from the page
+        getVariantJSON() {
+          if (!this.variantData) {
+            const variantJsonElement = this.querySelector('[type="application/json"]');
+            if (variantJsonElement) {
+              this.variantData = JSON.parse(variantJsonElement.textContent);
+            } else {
+              console.error('Variant JSON not found');
+              return null;
+            }
+          }
+          return this.variantData;
+        }
+
+        // Finds the matching variant based on selected options
+        getSelectedVariant() {
+          const variantData = this.getVariantJSON();
+          if (!variantData) return;
+
+          this.currentVariant = variantData.find(variant =>
+            variant.options.every((option, index) => option === this.options[index])
+          );
+
+          if (this.currentVariant) {
+            console.log('Selected Variant:', this.currentVariant);
+          } else {
+            console.log('No matching variant found');
+          }
+        }
+
+        // Updates the URL with the selected variant ID
+        updateURL() {
+          if (!this.currentVariant) return;
+
+          const newUrl = `${this.dataset.url}?variant=${this.currentVariant.id}`;
+          window.history.replaceState({}, '', newUrl);
+          console.log('URL Updated:', newUrl);
+        }
+      }
+
+      // Define the custom element
+      customElements.define('variant-selector', VariantSelector);
+    </script>
+{% endcomment %}
+
+<div class="product_media">
   <div class="product_media_Section">
     <div class="product_mediaContainer">
       <div class="product_media_Conten">
@@ -48,14 +223,16 @@
                             class="op_vlu"
                           >
                             {% for value in option.values %}
-                              <option value="{{value |escape}}">{{ value }}</option>
+                              <option value="{{ value | escape }}">{{ value }}</option>
                             {% endfor %}
                           </select>
                         </div>
 
-                        <script type="application/json">
-                          {{ product.variants |json }}
-                        </script>
+                        {% if forloop.last %}
+                          <script type="application/json">
+                            {{ product.variants | json }}
+                          </script>
+                        {% endif %}
                       {% endfor %}
                     </variant-selector>
                   {% endunless %}
@@ -63,9 +240,9 @@
 
               {% when 'quantity' %}
                 <div class="quantity_vlu">
-                  <label for="Quantitiy-{{ section.id }}">Quantity</label>
+                  <label for="Quantity-{{ section.id }}">Quantity</label>
                   <div class="input_qnty_vlu">
-                    <input type="number" name="quantity" id="Quantitiy-{{ section.id }}" value="1">
+                    <input type="number" name="quantity" id="Quantity-{{ section.id }}" value="1">
                   </div>
                 </div>
               {% when 'description' %}
@@ -83,7 +260,7 @@
                     {% endif %}
                   >
                     {% if product.selected_variant.available == false %}
-                      SoldOut
+                      Sold Out
                     {% else %}
                       Add To Cart
                     {% endif %}
@@ -99,21 +276,18 @@
   </div>
 </div>
 
-
-  <script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
     class VariantSelector extends HTMLElement {
       constructor() {
         super();
-        // Initialize properties
         this.variantData = null;
         this.options = [];
         this.currentVariant = null;
-  
-        // Bind event listeners
+
         this.addEventListener('change', this.onVariantChange.bind(this));
       }
-  
-      // Handles the variant change event
+
       onVariantChange() {
         this.getSelectedOptions();
         this.getSelectedVariant();
@@ -122,14 +296,12 @@
         }
         console.log('Variant selector change');
       }
-  
-      // Fetches the selected options from the <select> elements
+
       getSelectedOptions() {
-        this.options = Array.from(this.querySelectorAll('select'), select => select.value);
+        this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
         console.log('Selected Options:', this.options);
       }
-  
-      // Retrieves the variant JSON data from the page
+
       getVariantJSON() {
         if (!this.variantData) {
           const variantJsonElement = this.querySelector('[type="application/json"]');
@@ -142,207 +314,34 @@
         }
         return this.variantData;
       }
-  
-      // Finds the matching variant based on selected options
+
       getSelectedVariant() {
         const variantData = this.getVariantJSON();
         if (!variantData) return;
-  
-        this.currentVariant = variantData.find(variant => 
+
+        this.currentVariant = variantData.find((variant) =>
           variant.options.every((option, index) => option === this.options[index])
         );
-  
+
         if (this.currentVariant) {
           console.log('Selected Variant:', this.currentVariant);
         } else {
           console.log('No matching variant found');
         }
       }
-  
-      // Updates the URL with the selected variant ID
+
       updateURL() {
         if (!this.currentVariant) return;
-  
+
         const newUrl = `${this.dataset.url}?variant=${this.currentVariant.id}`;
         window.history.replaceState({}, '', newUrl);
         console.log('URL Updated:', newUrl);
       }
     }
-  
-    // Define the custom element
+
     customElements.define('variant-selector', VariantSelector);
-  </script> {% endcomment %}
-
-
-  <div class="product_media">
-    <div class="product_media_Section">
-      <div class="product_mediaContainer">
-        <div class="product_media_Conten">
-          {% for media in product.media %}
-            <div class="product_med">
-              {% render 'product-media', media: media %}
-            </div>
-          {% endfor %}
-        </div>
-  
-        <div class="product_Information">
-          {% form 'product', product %}
-            <input type="hidden" name="id" value="{{ selected_variant.id }}">
-            {% for block in section.blocks %}
-              {%- case block.type -%}
-                {%- when 'vendor' -%}
-                  <div class="product_info">
-                    <span class="product_vendor">{{ product.vendor }}</span>
-                  </div>
-  
-                {%- when 'title' -%}
-                  <div class="proudct_name">
-                    <div>{{ product.title }}</div>
-                  </div>
-                {%- when 'price' -%}
-                  <div class="Product_Price">
-                    <span> {{ selected_variant.compare_at_price | money }}</span>
-                    <span>{{ selected_variant.price | money }}</span>
-  
-                    {% if selected_variant.price < selected_variant.compare_at_price %}
-                      Sale
-                    {% endif %}
-                  </div>
-  
-                {% when 'variant_selector' %}
-                  <div class="Seclected_section">
-                    {% unless product.has_only_default_variant %}
-                      <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
-                        {% for option in product.options_with_values %}
-                          <label for="option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-                          <div class="option_value">
-                            <select
-                              name="options[{{ option.name|escape }}]"
-                              id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                              class="op_vlu"
-                            >
-                              {% for value in option.values %}
-                                <option value="{{ value | escape }}">{{ value }}</option>
-                              {% endfor %}
-                            </select>
-                          </div>
-  
-                          {% if forloop.last %}
-                            <script type="application/json">
-                              {{ product.variants | json }}
-                            </script>
-                          {% endif %}
-                        {% endfor %}
-                      </variant-selector>
-                    {% endunless %}
-                  </div>
-  
-                {% when 'quantity' %}
-                  <div class="quantity_vlu">
-                    <label for="Quantity-{{ section.id }}">Quantity</label>
-                    <div class="input_qnty_vlu">
-                      <input type="number" name="quantity" id="Quantity-{{ section.id }}" value="1">
-                    </div>
-                  </div>
-                {% when 'description' %}
-                  <div class="product_Discription">
-                    <p>{{ product.description }}</p>
-                  </div>
-                {% when 'checkout_button' %}
-                  <div class="add-to-cart-SEction">
-                    <button
-                      type="submit"
-                      name="add"
-                      class="add-button"
-                      {% if product.selected_variant == false %}
-                        disabled
-                      {% endif %}
-                    >
-                      {% if product.selected_variant.available == false %}
-                        Sold Out
-                      {% else %}
-                        Add To Cart
-                      {% endif %}
-                    </button>
-                  </div>
-  
-                {%- else -%}
-              {%- endcase -%}
-            {% endfor %}
-          {% endform %}
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      class VariantSelector extends HTMLElement {
-        constructor() {
-          super();
-          this.variantData = null;
-          this.options = [];
-          this.currentVariant = null;
-  
-          this.addEventListener('change', this.onVariantChange.bind(this));
-        }
-  
-        onVariantChange() {
-          this.getSelectedOptions();
-          this.getSelectedVariant();
-          if (this.currentVariant) {
-            this.updateURL();
-          }
-          console.log('Variant selector change');
-        }
-  
-        getSelectedOptions() {
-          this.options = Array.from(this.querySelectorAll('select'), select => select.value);
-          console.log('Selected Options:', this.options);
-        }
-  
-        getVariantJSON() {
-          if (!this.variantData) {
-            const variantJsonElement = this.querySelector('[type="application/json"]');
-            if (variantJsonElement) {
-              this.variantData = JSON.parse(variantJsonElement.textContent);
-            } else {
-              console.error('Variant JSON not found');
-              return null;
-            }
-          }
-          return this.variantData;
-        }
-  
-        getSelectedVariant() {
-          const variantData = this.getVariantJSON();
-          if (!variantData) return;
-  
-          this.currentVariant = variantData.find(variant => 
-            variant.options.every((option, index) => option === this.options[index])
-          );
-  
-          if (this.currentVariant) {
-            console.log('Selected Variant:', this.currentVariant);
-          } else {
-            console.log('No matching variant found');
-          }
-        }
-  
-        updateURL() {
-          if (!this.currentVariant) return;
-  
-          const newUrl = `${this.dataset.url}?variant=${this.currentVariant.id}`;
-          window.history.replaceState({}, '', newUrl);
-          console.log('URL Updated:', newUrl);
-        }
-      }
-  
-      customElements.define('variant-selector', VariantSelector);
-    });
-  </script>
-  
-  
+  });
+</script>
 
 {% schema %}
 {

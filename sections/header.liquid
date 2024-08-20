@@ -1,6 +1,4 @@
-
-
- <div class="relative bg-white">
+<div class="relative bg-white">
   <div class="max-w-screen-xl mx-auto px-4">
     <div class="flex justify-between items-center py-4">
       <!-- Store Logo and Title -->
@@ -51,7 +49,7 @@
           {% endif %}
         {% endfor %}
       </div>
-
+         <div class="search_option-Section">{% render 'icon-search' %}</div>
       <!-- Cart Button / Account Links if enabled -->
       <div class="hidden md:flex space-x-4">
         <a class="whitespace-nowrap text-base" href="{{ routes.cart_url }}">
@@ -81,10 +79,7 @@
       </div>
     </div>
   </div>
-</div> 
-
-
-
+</div>
 
 {% schema %}
 {
@@ -129,5 +124,5 @@
   </style>
 {% endcomment %}
 <script>
-  console.log("hello")
+  console.log('hello');
 </script>
