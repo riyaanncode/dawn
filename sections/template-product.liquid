@@ -25,6 +25,10 @@
                 <div class="Product_Price">
                <span> {{selected_variant.compare_at_price |money }}</span>
                <span>{{ selected_variant.price |money }}</span>
+
+               {% if selected_variant.price <selected_variant.compare_at_price %}
+               Sale
+            {% endif %}
                 </div>
             
             {% endform %}
