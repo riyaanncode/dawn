@@ -52,8 +52,10 @@
          
       <!-- Cart Button / Account Links if enabled -->
       <div class="hidden md:flex space-x-4">
-
-        <button class="search_option-Section">{% render 'icon-search' %}</button>
+        <button class="search_option-Section" id="search-button">
+          {% render 'icon-search' %}
+        </button>
+        {% comment %} <button class="search_option-Section">{% render 'icon-search' %}</button> {% endcomment %}
 
         <a class="whitespace-nowrap text-base" href="{{ routes.cart_url }}">
           {% render 'icon-shoping-bag' %}
@@ -107,35 +109,42 @@
 }
 {% endschema %}
 
-{% comment %}
-  <style>
-    @media (max-width: 800px) {
-      .nav-menu {
-        display: none;
-        flex-direction: column;
-      }
 
-      .humbermenu-section {
-        display: block;
-      }
-
-      .humber-menu-button:hover + .nav-menu,
-      .nav-menu:hover {
-        display: flex;
-      }
-    }
-  </style>
-{% endcomment %}
-<!-- JavaScript to handle the button click -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Select the button element
-    const searchButton = document.querySelector('.search_option-Section');
+    const searchButton = document.getElementById('search-button');
+    const searchInput = document.getElementById('search-input');
 
-    // Add click event listener to the button
+    // Toggle the display of the search input when the button is clicked
     searchButton.addEventListener('click', () => {
-      // Display alert when button is clicked
-      alert('Hello, World!');
+      if (searchInput.style.display === 'none' || searchInput.style.display === '') {
+        searchInput.style.display = 'inline-block';
+        searchInput.focus(); // Focus on the input when displayed
+      } else {
+        searchInput.style.display = 'none';
+      }
     });
   });
 </script>
+
+
+
+
+<style>
+  /* Styling for the search input box */
+  .search-input {
+    width: 200px;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 10px;
+  }
+
+  .search_option-Section {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+</style>
