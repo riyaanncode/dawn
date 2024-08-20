@@ -1,4 +1,4 @@
-{% paginate search.results by 9 %}
+{% comment %} {% paginate search.results by 9 %}
 {% for item in search.results %}
 {%- case item.object_type -%}
     {%- when 'product' -%}
@@ -8,4 +8,21 @@
         
     {%- endcase -%}
  {% endfor %}
+{% endpaginate %} {% endcomment %}
+
+
+{% paginate search.results by 9 %}
+<div class="search-results">
+  {% for item in search.results %}
+    {%- case item.object_type -%}
+      {%- when 'product' -%}
+        <div class="product-result">
+          <h2>{{ item.title }}</h2> <!-- Display product title -->
+          {% render 'product-cart', product: item %}
+        </div>
+      {%- else -%}
+        <p>No products found.</p>
+    {%- endcase -%}
+  {% endfor %}
+</div>
 {% endpaginate %}
