@@ -1,45 +1,3 @@
-{% comment %}
-  <div class="account-section">
-      <h1>Account</h1>
-      <div class="account-container">
-          <div class="account-content">
-              {% assign  number_of_orders = customer.orders |size %}
-              {% if number_of_orders >0 %}
-              <div class="heading-conten_order">
-              <h2 class="heading">Order History</h2>
-              {% paginate customer.orders by 5 %}
-              <div>
-              {% for order in customer.orders %}
-              <div class="optio">
-
-                  {% if order.line_items.first.image %}
-                     <img class="w-full h-full object-center object-cover"
-                      src="{{order.line_items.first.image | img_url: 'medium' }}"
-                      alt="{{order.line_items.first.image.alt)}">
-                      {% endif %}
-
-              </div>
-
-
-
-
-              {% endfor  %}
-          </div>
-
-              {% endpaginate %}
-              </div>
-
-              {% else %}
-           <div class="else-condition">
-             <h2 class="else-cot"> you currently don't have any orders</h2>
-          </div>
-              {% endif %}
-
-          </div>
-      </div>
-  </div>
-{% endcomment %}
-
 <div class="account-section">
   <h1>Account</h1>
   <div class="account-container">
@@ -61,20 +19,24 @@
                       width=""
                     >
                   {%- else -%}
-                    {{ "product-1" | placeholder_svg_tag: 'w-full h-full object-center object-cove' }}
+                    {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cove' }}
                   {% endif %}
                   <!-- Add additional order details here if needed -->
                 </div>
 
                 <div class="order-Customer_url">
-                <div>
-                <h3>
-                    
-                        {{order .name|link_to: 'order.customer_url '}}
-                        
-                        </h3>
-                        <p>{{ order.financial_status_label }}</p>
-                </div>
+                  <div>
+                    <h3>
+                      {{ order.name | link_to: 'order.customer_url ' }}
+                    </h3>
+
+                    <p>{{ order.financial_status_label }}</p>
+                  </div>
+<div>
+<p>{{ order.fulfillment_status_label }}</p>
+<p>{{ order.total_price |money }}</p>
+</div>
+
                 </div>
               {% endfor %}
             </div>
@@ -88,3 +50,135 @@
     </div>
   </div>
 </div>
+
+
+<style>
+/* General Reset and Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main Container Styling */
+.account-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.account-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.account-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.heading-content_order {
+    margin-bottom: 20px;
+}
+
+.heading {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Order List */
+.orders-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.order-item {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 20px); /* 3 columns on larger screens */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.order-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.order-Customer_url {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.order-Customer_url h3 {
+    font-size: 1.2rem;
+    color: #0073e6;
+    margin-bottom: 5px;
+}
+
+.order-Customer_url p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* No Orders Message */
+.no-orders {
+    text-align: center;
+    padding: 50px;
+    background-color: #ffebeb;
+    border-radius: 10px;
+}
+
+.no-orders-message {
+    font-size: 1.5rem;
+    color: #ff4c4c;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .order-item {
+        flex: 1 1 calc(50% - 20px); /* 2 columns on medium screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .order-item {
+        flex: 1 1 100%; /* 1 column on small screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .heading {
+        font-size: 1.2rem;
+    }
+
+    .order-Customer_url h3 {
+        font-size: 1rem;
+    }
+
+    .order-Customer_url p {
+        font-size: 0.9rem;
+    }
+}
+
+</style>
