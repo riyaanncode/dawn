@@ -1,1 +1,276 @@
-<h1>hello</h1>
+<div class="customer-page">
+    <div class="customer-Create-section">
+      <div class="customer-create-container">
+        <h1 class="signin">Sign In</h1>
+        <div class="customer-create-content">
+          <form id="customer_create" action="/account/login" method="post">
+            {% if form.errors %}
+            <div class="alert" role="alert">
+              <strong class="strong">Error!</strong>
+              <p class="pppp">{{ form.errors |default_errors }}</p>
+            </div>
+            {% endif %}
+            <div class="form-group">
+              <label for="customer-email">Email</label>
+              <input
+                type="email"
+                id="customer-email"
+                name="customer[email]"
+                class="input-field"
+                required
+                placeholder="Enter Your Email"
+              >
+            </div>
+            <div class="form-group">
+              <label for="customer-password">Password</label>
+              <input
+                type="password"
+                id="customer-password"
+                name="customer[password]"
+                class="input-field"
+                required
+                placeholder="Enter Your Password"
+              >
+            </div>
+            <div class="forgot-password">
+              <a href="#" class="password-forgot" onclick="showRecoverForm()">Forget Your Password?</a>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="submit-btn">Sign In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+     
+  </div>
+
+
+
+
+<script>
+    function showRecoverForm() {
+      document.querySelector('.customer-login-section').style.display = 'none';
+      document.querySelector('.recover-password-section').style.display = 'block';
+    }
+  
+    function showLoginForm() {
+      document.querySelector('.recover-password-section').style.display = 'none';
+      document.querySelector('.customer-login-section').style.display = 'block';
+    }
+  </script>
+
+
+
+<style>
+  .customer-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 0 15px;
+  }
+
+  .customer-login-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .customer-login-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .signin {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .customer-login-content {
+    margin-top: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .input-field {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .input-field:focus {
+    border-color: black;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 480px) {
+    .customer-login-section {
+      padding: 15px;
+      max-width: 90%;
+    }
+
+    .signin {
+      font-size: 20px;
+    }
+
+    .input-field {
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+
+
+
+  .Recover-Password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 0 15px;
+}
+
+.recover-password-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.recover-password-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.recover-password-content {
+    margin-top: 20px;
+}
+
+.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+}
+
+.alert .strong {
+    font-weight: bold;
+}
+
+.alert .pppp {
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-field {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color:black;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background-color: gray;
+}
+
+@media (max-width: 480px) {
+    .recover-password-container {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .recover-password-container h1 {
+        font-size: 20px;
+    }
+
+    .input-field {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+</style>
