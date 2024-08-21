@@ -21,6 +21,21 @@
                   {%- else -%}
                     {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cove' }}
                   {% endif %}
+                  <div class="order-Customer_url">
+                    <div>
+                      <h3>
+                        {{ order.name | link_to: 'order.customer_url ' }}
+                      </h3>
+  
+                      <p>{{ order.financial_status_label }}</p>
+                    </div>
+                    <div>
+                      <p>{{ order.fulfillment_status_label }}</p>
+                      <p>{{ order.total_price |money }}</p>
+                    </div>
+            
+  
+                  </div>
                   <!-- Add additional order details here if needed -->
                 </div>
 
@@ -32,10 +47,11 @@
 
                     <p>{{ order.financial_status_label }}</p>
                   </div>
-<div>
-<p>{{ order.fulfillment_status_label }}</p>
-<p>{{ order.total_price |money }}</p>
-</div>
+                  <div>
+                    <p>{{ order.fulfillment_status_label }}</p>
+                    <p>{{ order.total_price |money }}</p>
+                  </div>
+          
 
                 </div>
               {% endfor %}
@@ -54,35 +70,24 @@
 
 <style>
 /* General Reset and Box Sizing */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Main Container Styling */
+/* General Styles */
 .account-section {
     padding: 20px;
-    background-color: #f9f9f9;
-}
-
-h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
+    background-color: #f5f5f5;
 }
 
 .account-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .account-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 .heading-content_order {
@@ -90,103 +95,77 @@ h1 {
 }
 
 .heading {
-    font-size: 1.5rem;
+    font-size: 24px;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* Order List */
 .orders-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
 }
 
 .order-item {
-    background-color: #f1f1f1;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(33.333% - 20px); /* 3 columns on larger screens */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .order-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-bottom: 10px;
+    max-width: 150px;
+    margin-right: 20px;
 }
 
 .order-Customer_url {
-    margin-top: 10px;
-    width: 100%;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .order-Customer_url h3 {
-    font-size: 1.2rem;
-    color: #0073e6;
-    margin-bottom: 5px;
-    word-wrap: break-word;
+    margin: 0;
+    font-size: 18px;
 }
 
 .order-Customer_url p {
-    font-size: 1rem;
-    color: #555;
     margin: 5px 0;
+    color: #777;
 }
 
-.order-Customer_url > div:last-child p {
-    font-weight: bold;
-    color: #333;
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .orders-list {
+        gap: 10px;
+    }
+
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-image {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .order-Customer_url {
+        width: 100%;
+    }
 }
 
-/* No Orders Message */
 .no-orders {
     text-align: center;
-    padding: 50px;
-    background-color: #ffebeb;
-    border-radius: 10px;
+    margin: 20px 0;
 }
 
 .no-orders-message {
-    font-size: 1.5rem;
-    color: #ff4c4c;
+    font-size: 18px;
+    color: #777;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 1024px) {
-    .order-item {
-        flex: 1 1 calc(50% - 20px); /* 2 columns on medium screens */
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .order-item {
-        flex: 1 1 100%; /* 1 column on small screens */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    .heading {
-        font-size: 1.2rem;
-    }
-
-    .order-Customer_url h3 {
-        font-size: 1rem;
-    }
-
-    .order-Customer_url p {
-        font-size: 0.9rem;
-    }
-}
 
 </style>
