@@ -1,1 +1,145 @@
-helloo
+<div class="customer-page">
+  <div class="customer-login-section">
+    <div class="customer-login-container">
+      <h1 class="signin">Sign In</h1>
+      <div class="customer-login-content">
+        <form id="customer_login" action="/account/login" method="post">
+         {% if form.errors %}
+        <div class="alert" role="alert">
+        <strong class="strong">Error!</strong>
+        <p class="pppp">{{ form.errors |default_errors }} </p>
+        </div>
+        
+        {% endif %}
+
+          <div class="form-group">
+            <label for="customer-email">Email</label>
+            <input
+              type="email"
+              id="customer-email"
+              name="customer[email]"
+              class="input-field"
+              required
+              placeholder="Enter Your Email "
+            >
+          </div>
+          {% if form.password_needed %}
+          <div class="form-group">
+            <label for="customer-password">Password</label>
+            <input
+              type="password"
+              id="customer-password"
+              name="customer[password]"
+              class="input-field"
+              required
+              placeholder="Enter Your Password"
+            >
+          </div>
+          <div class="form-group">
+            <button type="submit" class="submit-btn">Sign In</button>
+          </div>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .customer-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 0 15px;
+  }
+
+  .customer-login-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .customer-login-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .signin {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .customer-login-content {
+    margin-top: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .input-field {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .input-field:focus {
+    border-color: black;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 480px) {
+    .customer-login-section {
+      padding: 15px;
+      max-width: 90%;
+    }
+
+    .signin {
+      font-size: 20px;
+    }
+
+    .input-field {
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+</style>
