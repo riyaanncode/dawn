@@ -137,6 +137,12 @@
       </div>
     </div>
   
+{% if shop.checkout.guest_login%} 
+allowed
+{% else %}
+not allowed
+{% endif %}
+
     <div class="recover-password-section" style="display: none;">
       <div class="recover-password-container">
         <h1>Recover Your Password</h1>
