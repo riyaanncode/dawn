@@ -1,5 +1,5 @@
 <div class="customer-page">
-    <div class="customer-Create-section">
+    <div class="customer-create-section">
       <div class="customer-create-container">
         <h1 class="signin">Create New Account</h1>
         <div class="customer-create-content">
@@ -10,6 +10,28 @@
               <p class="pppp">{{ form.errors |default_errors }}</p>
             </div>
             {% endif %}
+            <div class="form-group">
+              <label for="customer-firstname">First Name</label>
+              <input
+                type="text"
+                id="customer-firstname"
+                name="customer[firstname]"
+                class="input-field"
+                required
+                placeholder="Enter Your First Name"
+              >
+            </div>
+            <div class="form-group">
+              <label for="customer-lastname">Last Name</label>
+              <input
+                type="text"
+                id="customer-lastname"
+                name="customer[lastname]"
+                class="input-field"
+                required
+                placeholder="Enter Your Last Name"
+              >
+            </div>
             <div class="form-group">
               <label for="customer-email">Email</label>
               <input
@@ -32,7 +54,6 @@
                 placeholder="Enter Your Password"
               >
             </div>
-            
             <div class="form-group">
               <button type="submit" class="submit-btn">Create Account</button>
             </div>
@@ -40,9 +61,8 @@
         </div>
       </div>
     </div>
-  
-     
   </div>
+  
 
 
 
