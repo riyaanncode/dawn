@@ -1,71 +1,89 @@
-{% comment %} <div class="account-section">
-    <h1>Account</h1>
-    <div class="account-container">
-        <div class="account-content">
-            {% assign  number_of_orders = customer.orders |size %}
-            {% if number_of_orders >0 %} 
-            <div class="heading-conten_order">
-            <h2 class="heading">Order History</h2>
-            {% paginate customer.orders by 5 %}
-            <div>
-            {% for order in customer.orders %}
-            <div class="optio">
-                
-                {% if order.line_items.first.image %}
-                   <img class="w-full h-full object-center object-cover"
-                    src="{{order.line_items.first.image | img_url: 'medium' }}"
-                    alt="{{order.line_items.first.image.alt)}"> 
-                    {% endif %}
-            
-            </div> 
+{% comment %}
+  <div class="account-section">
+      <h1>Account</h1>
+      <div class="account-container">
+          <div class="account-content">
+              {% assign  number_of_orders = customer.orders |size %}
+              {% if number_of_orders >0 %}
+              <div class="heading-conten_order">
+              <h2 class="heading">Order History</h2>
+              {% paginate customer.orders by 5 %}
+              <div>
+              {% for order in customer.orders %}
+              <div class="optio">
 
-            
-               
-            
-            {% endfor  %}
-        </div>
-            
-            {% endpaginate %}
-            </div>
+                  {% if order.line_items.first.image %}
+                     <img class="w-full h-full object-center object-cover"
+                      src="{{order.line_items.first.image | img_url: 'medium' }}"
+                      alt="{{order.line_items.first.image.alt)}">
+                      {% endif %}
 
-            {% else %}
-         <div class="else-condition">
-           <h2 class="else-cot"> you currently don't have any orders</h2>
-        </div>
-            {% endif %}
-        
-        </div>
-    </div>
-</div> {% endcomment %}
+              </div>
+
+
+
+
+              {% endfor  %}
+          </div>
+
+              {% endpaginate %}
+              </div>
+
+              {% else %}
+           <div class="else-condition">
+             <h2 class="else-cot"> you currently don't have any orders</h2>
+          </div>
+              {% endif %}
+
+          </div>
+      </div>
+  </div>
+{% endcomment %}
 
 <div class="account-section">
-    <h1>Account</h1>
-    <div class="account-container">
-        <div class="account-content">
-            {% assign number_of_orders = customer.orders | size %}
-            {% if number_of_orders > 0 %} 
-            <div class="heading-content_order">
-                <h2 class="heading">Order History</h2>
-                {% paginate customer.orders by 5 %}
-                <div class="orders-list">
-                    {% for order in customer.orders %}
-                    <div class="order-item">
-                        {% if order.line_items.first.image %}
-                        <img class="order-image"
-                             src="{{ order.line_items.first.image | img_url: 'medium' }}"
-                             alt="{{ order.line_items.first.image.alt }}">
-                        {% endif %}
-                        <!-- Add additional order details here if needed -->
-                    </div>
-                    {% endfor %}
+  <h1>Account</h1>
+  <div class="account-container">
+    <div class="account-content">
+      {% assign number_of_orders = customer.orders | size %}
+      {% if number_of_orders > 0 %}
+        <div class="heading-content_order">
+          <h2 class="heading">Order History</h2>
+          {% paginate customer.orders by 5 %}
+            <div class="orders-list">
+              {% for order in customer.orders %}
+                <div class="order-item">
+                  {% if order.line_items.first.image %}
+                    <img
+                      class="order-image"
+                      src="{{ order.line_items.first.image | img_url: 'medium' }}"
+                      alt="{{ order.line_items.first.image.alt }}"
+                      height=""
+                      width=""
+                    >
+                  {%- else -%}
+                    {{ "product-1" | placeholder_svg_tag: 'w-full h-full object-center object-cove' }}
+                  {% endif %}
+                  <!-- Add additional order details here if needed -->
                 </div>
-                {% endpaginate %}
+
+                <div class="order-Customer_url">
+                <div>
+                <h3>
+                    
+                        {{order .name|link_to: 'order.customer_url '}}
+                        
+                        </h3>
+                </div>
+                </div>
+              {% endfor %}
             </div>
-            {% else %}
-            <div class="no-orders">
-                <h2 class="no-orders-message">You currently don't have any orders</h2>
-            </div>
-            {% endif %}
+          {% endpaginate %}
         </div>
+      {% else %}
+        <div class="no-orders">
+          <h2 class="no-orders-message">You currently don't have any orders</h2>
+        </div>
+      {% endif %}
     </div>
+  </div>
 </div>
