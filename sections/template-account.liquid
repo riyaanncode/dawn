@@ -6,11 +6,15 @@
             {% if number_of_orders >0 %} 
             <div class="heading-conten_order">
             <h2 class="heading">Order History</h2>
-            {% paginate collection.products by 12 %}
-            {% for product in collection.products  %}
-                
+            {% paginate customer.orders by 5 %}
+            <div>
+            {% for order in customer.orders %}
+             <div class="optio">
+            {{ order.name }}
+            </div>
             
             {% endfor  %}
+        </div>
             
             {% endpaginate %}
             </div>
