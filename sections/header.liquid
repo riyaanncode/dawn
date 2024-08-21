@@ -49,23 +49,22 @@
           {% endif %}
         {% endfor %}
       </div>
-         
+
       <!-- Cart Button / Account Links if enabled -->
       <div class="hidden md:flex space-x-4">
+        <!-- Button with search icon -->
+        <button class="search_option-Section" id="search-button">
+          {% render 'icon-search' %}
+        </button>
 
-         <!-- Button with search icon -->
-  <button class="search_option-Section" id="search-button">
-    {% render 'icon-search' %}
-  </button>
+        <!-- Popup overlay -->
+        <div class="popup-overlay" id="search-popup">
+          <div class="popup-content">
+            <input type="text" id="search-input" class="search-input" placeholder="Search...">
+            <button class="close-popup" id="close-popup">Close</button>
+          </div>
+        </div>
 
-  <!-- Popup overlay -->
-  <div class="popup-overlay" id="search-popup">
-    <div class="popup-content">
-      <input type="text" id="search-input" class="search-input" placeholder="Search...">
-      <button class="close-popup" id="close-popup">Close</button>
-    </div>
-  </div>
-      
         {% comment %} <button class="search_option-Section">{% render 'icon-search' %}</button> {% endcomment %}
 
         <a class="whitespace-nowrap text-base" href="{{ routes.cart_url }}">
