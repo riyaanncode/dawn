@@ -39,7 +39,7 @@
                   <!-- Add additional order details here if needed -->
                 </div>
 
-                <div class="order-Customer_url">
+                {% comment %} <div class="order-Customer_url">
                   <div>
                     <h3>
                       {{ order.name | link_to: 'order.customer_url ' }}
@@ -53,7 +53,7 @@
                   </div>
           
 
-                </div>
+                </div> {% endcomment %}
               {% endfor %}
             </div>
           {% endpaginate %}
@@ -166,6 +166,52 @@
     font-size: 18px;
     color: #777;
 }
+
+
+.order-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.order-image {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.order-Customer_url {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.order-Customer_url h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.order-Customer_url p {
+    margin: 5px 0;
+    color: #777;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .order-image {
+        max-width: 100%;
+    }
+
+    .order-Customer_url {
+        width: 100%;
+    }
+}
+
 
 
 </style>
