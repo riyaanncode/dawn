@@ -123,18 +123,26 @@ h1 {
 
 .order-Customer_url {
     margin-top: 10px;
-    text-align: center;
+    width: 100%;
+    text-align: left;
 }
 
 .order-Customer_url h3 {
     font-size: 1.2rem;
     color: #0073e6;
     margin-bottom: 5px;
+    word-wrap: break-word;
 }
 
 .order-Customer_url p {
     font-size: 1rem;
     color: #555;
+    margin: 5px 0;
+}
+
+.order-Customer_url > div:last-child p {
+    font-weight: bold;
+    color: #333;
 }
 
 /* No Orders Message */
