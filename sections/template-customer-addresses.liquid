@@ -107,7 +107,7 @@
                 <select name="address[country]" id="address_country_{{ form.id }}" value="{{ form.country }}">{{ all_country_option_tags }}</select>
             </div>
 
-            <div class="form-group">
+            <div class="form-groupbt">
                 <button type="submit" class="submit-btn">Create Address</button>
                 <button type="reset" class="cancel">Cancel</button>
             </div>
@@ -353,5 +353,24 @@ function closeAddressForm() {
 }
 
 
+}
+
+
+.form-groupbt{
+    gap: 21px;
+    display: flex;
+}
+.submit-btn{
+    background-color: #0c0d0c;
+    color: white;
+    padding: 8px 56px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+.cancel{
+    border: 2px solid black;
+    width: 50%;
+}
 
 </style>
