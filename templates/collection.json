@@ -9,7 +9,7 @@
 */
 {
   "sections": {
-    "header_EzQcNj": {
+    "header": {
       "type": "header",
       "settings": {
         "menu": "main-menu"
@@ -49,7 +49,7 @@
     }
   },
   "order": [
-    "header_EzQcNj",
+    "header",
     "template",
     "collection_list_jdxfdh"
   ]
