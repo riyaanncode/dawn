@@ -35,89 +35,94 @@
 </div> {% endcomment %}
 
 
-
+<!-- Address Section -->
 <div class="address-section">
-    <div class="addresss-container">
+    <div class="address-container">
         <div class="address-content">
-            <div class="add-heading">
-                <h1 class="h1-heading">Address</h1>
-                <button class="create-new-address-btn" type="button" id="openAddressPopup">Create new Address</button>
-                <a href="{{ routes.account_url }}" class="back-to-url">Back to Account</a>
+            <div class="address-heading">
+                <h1 class="heading">Address</h1>
+                <button class="btn create-new-address-btn" type="button" id="openAddressPopup">Create New Address</button>
+                <a href="{{ routes.account_url }}" class="back-to-account">Back to Account</a>
             </div>
-            <div class="paginate_add">
-                {% paginate customer.addresses by 4 %}
-                <div class="for-addres-class">
-                    {% for address in customer.addresses %}
-                    <div>
-                        <div class="adderess">
-                            {% if address == customer.default_address %}
-                            <span class="default-class">Default</span>
-                            {% endif %}
-                            <div class="address-format">{{ address | format_address }}</div>
 
-                            <div class="btns">
-                                <button class="edit_btn">Edit</button>
-                                <button class="delete_btn">Delete</button>
-                            </div>
-                        </div>
+            <div class="address-list">
+                {% paginate customer.addresses by 4 %}
+                {% for address in customer.addresses %}
+                <div class="address-item">
+                    <div class="address-details">
+                        {% if address == customer.default_address %}
+                        <span class="default-badge">Default</span>
+                        {% endif %}
+                        <div class="address-text">{{ address | format_address }}</div>
                     </div>
-                    {% endfor %}
+                    <div class="address-actions">
+                        <button class="btn edit-btn">Edit</button>
+                        <button class="btn delete-btn">Delete</button>
+                    </div>
                 </div>
+                {% endfor %}
                 {% endpaginate %}
             </div>
         </div>
     </div>
 </div>
 
-<!-- Popup for New Address -->
-<div class="popup-open-new-address" id="newAddressPopup">
-    <div class="new-address-heading">
-        <h1>New Address</h1>
-        <button id="closeAddressPopup">{% render 'icon-close' %}</button>
-    </div>
-    <div class="new-address-form">
-        <!-- Your form fields here -->
-        <form>
-            <!-- Example fields -->
-            <div>
-                <label for="address-line1">Address Line 1</label>
-                <input type="text" id="address-line1" name="address-line1">
-            </div>
-            <div>
-                <label for="city">City</label>
-                <input type="text" id="city" name="city">
-            </div>
-            <!-- Add more form fields as necessary -->
-            <button type="submit">Save Address</button>
-        </form>
+<!-- New Address Popup -->
+<div class="popup" id="newAddressPopup" aria-hidden="true">
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="popup-content">
+        <div class="popup-header">
+            <h2>New Address</h2>
+            <button class="btn close-popup-btn" id="closeAddressPopup" aria-label="Close">&times;</button>
+        </div>
+        <div class="popup-body">
+            <form class="form new-address-form" id="newAddressForm">
+                <div class="form-group">
+                    <label for="address-line1">Address Line 1</label>
+                    <input type="text" id="address-line1" name="address-line1" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <!-- Add more form fields as necessary -->
+                <button type="submit" class="btn save-address-btn">Save Address</button>
+            </form>
+        </div>
     </div>
 </div>
 
-
-
+<!-- JavaScript to handle popup visibility -->
 <script>
-    // Get the elements
-    const openPopupBtn = document.getElementById('openAddressPopup');
-    const closePopupBtn = document.getElementById('closeAddressPopup');
-    const popup = document.getElementById('newAddressPopup');
+    document.addEventListener('DOMContentLoaded', function() {
+        const openPopupBtn = document.getElementById('openAddressPopup');
+        const closePopupBtn = document.getElementById('closeAddressPopup');
+        const popup = document.getElementById('newAddressPopup');
+        const overlay = document.getElementById('popupOverlay');
 
-    // Open the popup
-    openPopupBtn.addEventListener('click', function() {
-        popup.style.display = 'block';
-    });
+        openPopupBtn.addEventListener('click', function() {
+            popup.setAttribute('aria-hidden', 'false');
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
 
-    // Close the popup
-    closePopupBtn.addEventListener('click', function() {
-        popup.style.display = 'none';
-    });
-
-    // Close the popup when clicking outside of it
-    window.addEventListener('click', function(event) {
-        if (event.target == popup) {
+        closePopupBtn.addEventListener('click', function() {
+            popup.setAttribute('aria-hidden', 'true');
             popup.style.display = 'none';
-        }
+            overlay.style.display = 'none';
+        });
+
+        overlay.addEventListener('click', function() {
+            closePopupBtn.click();
+        });
     });
 </script>
+
+
+
+
+
+
 
 <style>
 /* General styles for the .add-heading class */
