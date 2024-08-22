@@ -1,0 +1,32 @@
+<div class="address-section">
+    <div class="addresss-container">
+        <div class="address-content">
+            <div class="add-heading">
+                <h1 class="h1-heading">Address </h1>
+                <button class="create-new-address-btn" type="button">Create new Address </button>
+                <a href="{{ routes.account_url }}" class="back-to-url">Back to Account</a>
+            </div>
+            <div class="paginate_add">
+                {% paginate customer.addresses by 4 %}
+                <div class="for-addres-class">
+                    {% for address in customer.addresses %}
+                    <div>
+                        <div class="adderess">
+                            {% if address == customer.default_address %}
+                            <span class="default-class">Default</span>
+                            {% endif %}
+                            <div class="address-format">{{ address | format_address }}</div>
+
+                            <div class="btns">
+                            <button class="edit_btn">Edit</button>
+                            <button class="delete_btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endpaginate %}
+            </div>
+        </div>
+    </div>
+</div>

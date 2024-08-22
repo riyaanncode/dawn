@@ -1,4 +1,4 @@
-<div class="address-section">
+{% comment %} <div class="address-section">
     <div class="addresss-container">
         <div class="address-content">
             <div class="add-heading">
@@ -6,6 +6,9 @@
                 <button class="create-new-address-btn" type="button">Create new Address </button>
                 <a href="{{ routes.account_url }}" class="back-to-url">Back to Account</a>
             </div>
+  
+
+
             <div class="paginate_add">
                 {% paginate customer.addresses by 4 %}
                 <div class="for-addres-class">
@@ -29,7 +32,92 @@
             </div>
         </div>
     </div>
+</div> {% endcomment %}
+
+
+
+<div class="address-section">
+    <div class="addresss-container">
+        <div class="address-content">
+            <div class="add-heading">
+                <h1 class="h1-heading">Address</h1>
+                <button class="create-new-address-btn" type="button" id="openAddressPopup">Create new Address</button>
+                <a href="{{ routes.account_url }}" class="back-to-url">Back to Account</a>
+            </div>
+            <div class="paginate_add">
+                {% paginate customer.addresses by 4 %}
+                <div class="for-addres-class">
+                    {% for address in customer.addresses %}
+                    <div>
+                        <div class="adderess">
+                            {% if address == customer.default_address %}
+                            <span class="default-class">Default</span>
+                            {% endif %}
+                            <div class="address-format">{{ address | format_address }}</div>
+
+                            <div class="btns">
+                                <button class="edit_btn">Edit</button>
+                                <button class="delete_btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endpaginate %}
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Popup for New Address -->
+<div class="popup-open-new-address" id="newAddressPopup">
+    <div class="new-address-heading">
+        <h1>New Address</h1>
+        <button id="closeAddressPopup">{% render 'icon-close' %}</button>
+    </div>
+    <div class="new-address-form">
+        <!-- Your form fields here -->
+        <form>
+            <!-- Example fields -->
+            <div>
+                <label for="address-line1">Address Line 1</label>
+                <input type="text" id="address-line1" name="address-line1">
+            </div>
+            <div>
+                <label for="city">City</label>
+                <input type="text" id="city" name="city">
+            </div>
+            <!-- Add more form fields as necessary -->
+            <button type="submit">Save Address</button>
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+    // Get the elements
+    const openPopupBtn = document.getElementById('openAddressPopup');
+    const closePopupBtn = document.getElementById('closeAddressPopup');
+    const popup = document.getElementById('newAddressPopup');
+
+    // Open the popup
+    openPopupBtn.addEventListener('click', function() {
+        popup.style.display = 'block';
+    });
+
+    // Close the popup
+    closePopupBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+
+    // Close the popup when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target == popup) {
+            popup.style.display = 'none';
+        }
+    });
+</script>
 
 <style>
 /* General styles for the .add-heading class */
