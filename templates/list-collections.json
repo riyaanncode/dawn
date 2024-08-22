@@ -7,6 +7,63 @@
 * made to this file may be overwritten.
 * ------------------------------------------------------------
 */
+// {
+//   "sections": {
+//     "template": {
+//       "type": "template-collection",
+//       "settings": {
+//         "number_of_product_per_page": 4
+//       }
+//     },
+//     "collection_list_A737Bt": {
+//       "type": "collection-list",
+//       "blocks": {
+//         "featured_collection_qy8WkR": {
+//           "type": "featured_collection",
+//           "settings": {
+//             "collection": "mycollection"
+//           }
+//         },
+//         "featured_collection_MnpVhH": {
+//           "type": "featured_collection",
+//           "settings": {
+//             "collection": ""
+//           }
+//         },
+//         "featured_collection_nVdPek": {
+//           "type": "featured_collection",
+//           "settings": {
+//             "collection": ""
+//           }
+//         }
+//       },
+//       "block_order": [
+//         "featured_collection_qy8WkR",
+//         "featured_collection_MnpVhH",
+//         "featured_collection_nVdPek"
+//       ],
+//       "settings": {
+//         "title": "Collections",
+//         "heading_size": "h1",
+//         "image_ratio": "square",
+//         "columns_desktop": 3,
+//         "color_scheme": "",
+//         "show_view_all": false,
+//         "columns_mobile": "1",
+//         "swipe_on_mobile": false,
+//         "padding_top": 36,
+//         "padding_bottom": 36
+//       }
+//     }
+//   },
+//   "order": [
+//     "template",
+//     "collection_list_A737Bt"
+//   ]
+// }
+
+
+
 {
   "sections": {
     "template": {
@@ -15,49 +72,10 @@
         "number_of_product_per_page": 4
       }
     },
-    "collection_list_A737Bt": {
-      "type": "collection-list",
-      "blocks": {
-        "featured_collection_qy8WkR": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "mycollection"
-          }
-        },
-        "featured_collection_MnpVhH": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_nVdPek": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_qy8WkR",
-        "featured_collection_MnpVhH",
-        "featured_collection_nVdPek"
-      ],
-      "settings": {
-        "title": "Collections",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "color_scheme": "",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    }
+    
   },
   "order": [
     "template",
-    "collection_list_A737Bt"
+    
   ]
 }
