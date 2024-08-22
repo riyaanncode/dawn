@@ -21,10 +21,10 @@
         "number_of_product_per_page": 4
       }
     },
-    "collection_list_jdxfdh": {
+    "collection_list": {
       "type": "collection-list",
       "blocks": {
-        "featured_collection_DWtfcR": {
+        "featured_collection": {
           "type": "featured_collection",
           "settings": {
             "collection": "mycollection"
@@ -32,7 +32,7 @@
         }
       },
       "block_order": [
-        "featured_collection_DWtfcR"
+        "featured_collection"
       ],
       "settings": {
         "title": "Collections",
@@ -51,6 +51,6 @@
   "order": [
     "header",
     "template",
-    "collection_list_jdxfdh"
+    "collection_list"
   ]
 }
