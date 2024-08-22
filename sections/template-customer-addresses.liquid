@@ -101,6 +101,12 @@
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
             </div>
+
+            <div class="form-group">
+                <label for="address_country_{{ form.id }}">Country:</label>
+                <select name="address[country]" id="address_country_{{ form.id }}" value="{{ form.country }}">{{ all_country_option_tags }}</select>
+            </div>
+
             <div class="form-group">
                 <button type="submit" class="submit-btn">Submit</button>
             </div>
