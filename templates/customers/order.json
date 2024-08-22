@@ -10,7 +10,7 @@
 {
     "sections": {
       "template": {
-        "type": "template-order",
+        "type": "template-customer-order",
         "settings": {
           "padding_top": 36,
           "padding_bottom": 36
