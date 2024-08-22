@@ -1,11 +1,89 @@
 <div class="address-section">
-<div class="addresss-container">
-<div class="address-content">
-<div class="add-heading">
-    <h1 class="h1-heading">Address </h1>
-    <button class="create-new-address-btn" type="button">Create new Address </button>
-    <a href="{{ routes.account_url }}" class="back-to-url"> Back to Account</a>
+    <div class="addresss-container">
+        <div class="address-content">
+            <div class="add-heading">
+                <h1 class="h1-heading">Address </h1>
+                <button class="create-new-address-btn" type="button">Create new Address </button>
+                <a href="{{ routes.account_url }}" class="back-to-url">Back to Account</a>
+            </div>
+            <div class="paginate_add">
+                {% paginate customer.addresses by 4 %}
+                <div class="for-addres-class">
+                    {% for address in customer.addresses %}
+                    <div>
+                        <div class="adderess">
+                            {% if address == customer.default_address %}
+                            <span class="default-class">Default</span>
+                            {% endif %}
+                            <div class="address-format">{{ address | format_address }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endpaginate %}
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
+
+<style>
+/* General styles for the .add-heading class */
+.add-heading {
+    display: flex;
+    justify-content: space-between; /* Align items with space between */
+    align-items: center; /* Vertically align items */
+    padding: 10px;
+    background-color: #f7f7f7; /* Background color */
+    border-bottom: 1px solid #ddd; /* Border at the bottom */
+}
+
+/* Style for the heading */
+.h1-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Style for the create new address button */
+.create-new-address-btn {
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #0e0e0f;
+    color: #fff;
+    border: none;
+    padding: 20px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+/* Style for the back to account link */
+.back-to-url {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* Hover effects */
+.create-new-address-btn:hover,
+.back-to-url:hover {
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .add-heading {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .h1-heading {
+        margin-bottom: 10px; /* Add space between heading and buttons/links */
+    }
+
+    .create-new-address-btn {
+        margin-bottom: 10px; /* Add space between the button and the link */
+    }
+}
+
+</style>
