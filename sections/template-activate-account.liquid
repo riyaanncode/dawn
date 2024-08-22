@@ -6,6 +6,15 @@
         </div>
 
         {% form 'activate_customer_password' %}
+            {% if form.errors %}
+            <div class="redsd" role="alert">
+            <strong>Error!</strong>
+            <span>
+            {{ form.errors |default_errors }}
+            </span>
+            </div>
+            
+            {% endif %}
         <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
