@@ -7,63 +7,50 @@
 * made to this file may be overwritten.
 * ------------------------------------------------------------
 */
-// {
-//   "sections": {
-//     "header": {
-//       "type": "header",
-//       "settings": {
-//         "menu": "main-menu"
-//       }
-//     },
-//     "template": {
-//       "type": "template-collection",
-//       "settings": {
-//         "number_of_product_per_page": 4
-//       }
-//     },
-//     "collection_list_jdxfdh": {
-//       "type": "collection-list",
-//       "blocks": {
-//         "featured_collection_DWtfcR": {
-//           "type": "featured_collection",
-//           "settings": {
-//             "collection": "mycollection"
-//           }
-//         }
-//       },
-//       "block_order": [
-//         "featured_collection_DWtfcR"
-//       ],
-//       "settings": {
-//         "title": "Collections",
-//         "heading_size": "h1",
-//         "image_ratio": "square",
-//         "columns_desktop": 3,
-//         "color_scheme": "",
-//         "show_view_all": false,
-//         "columns_mobile": "1",
-//         "swipe_on_mobile": false,
-//         "padding_top": 36,
-//         "padding_bottom": 36
-//       }
-//     }
-//   },
-//   "order": [
-//     "header",
-//     "template",
-//     "collection_list_jdxfdh"
-//   ]
-// }
-
 {
-
-  "sections":{
-    "template":{
-      "type":"collection"
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    },
+    "template": {
+      "type": "template-collection",
+      "settings": {
+        "number_of_product_per_page": 4
+      }
+    },
+    "collection_list_jdxfdh": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_DWtfcR": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mycollection"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_DWtfcR"
+      ],
+      "settings": {
+        "title": "Collections",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
-  "order":["template"]
+  "order": [
+    "header",
+    "template",
+    "collection_list_jdxfdh"
+  ]
 }
-
-
-
