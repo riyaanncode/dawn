@@ -1,4 +1,107 @@
-<div>
-    <h1> activate account</h1>
+<div class="active-account-section">
+    <div class="active-account-conter">
+        <div class="active_Heading">
+            <h1 class="hrad">Activate Account</h1>
+            <p>Create Your Password To Activate Account</p>
+        </div>
 
+        {% form 'activate_customer_password' %}
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+
+        <div class="form-groupbt">
+            <button type="submit" class="activate-btn">Activate Account</button>
+            <button type="button" class="decline-btn">Decline Invitation</button>
+        </div>
+        {% endform %}
+    </div>
 </div>
+
+<style>
+    .active-account-section {
+        padding: 20px;
+        background-color: #f9f9f9;
+        max-width: 400px;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+    
+    .active_Heading {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .hrad {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .active-account-conter p {
+        margin-bottom: 20px;
+        color: #666;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .form-groupbt {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .activate-btn {
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        flex: 1;
+        text-align: center;
+    }
+    
+    .activate-btn:hover {
+        background-color: #333;
+    }
+    
+    .decline-btn {
+        background-color: #ccc;
+        color: black;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        flex: 1;
+        text-align: center;
+    }
+    
+    .decline-btn:hover {
+        background-color: #bbb;
+    }
+    
+</style>
