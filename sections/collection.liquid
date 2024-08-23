@@ -6,7 +6,7 @@ B {% for product in collection.products %}
 6 {{ product.price | money }}
 7 {% unless product. available %}<br><strong>sold out</strong> {% endunless %}
 8 <a href="{{ product.url | within: collection }}">
-9 <img src="{{ product.featured_image.src img_url: 'large' }}" alt="{{ product.featured_image.alt | escape}}" width="" height="">
+9 <img src="{{ product.featured_image.src | image_url: 'large' }}" alt="{{ product.featured_image.alt | escape}}" width="" height="">
 10 </a>
 11 </div>
 12 {% else %}
