@@ -22,16 +22,10 @@
         "featured_collection": "mycollection",
         "number_of_product_to_show": 7
       }
-    },
-    "contact_form_Dc7Nbx": {
-      "type": "contact-form",
-      "settings": {
-      }
     }
   },
   "order": [
     "header_hgUPFL",
-    "featured-collection",
-    "contact_form_Dc7Nbx"
+    "featured-collection"
   ]
 }
