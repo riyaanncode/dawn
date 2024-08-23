@@ -15,8 +15,9 @@
 </head>
   <body class="gradient bg-sonal">
     {% sections'footer' %}
+    {% sections 'cart-drawer' %}
    {% sections 'header-group' %}
-   {% sections 'cart-drawer' %}
+   {% comment %} {% sections 'cart-drawer' %} {% endcomment %}
     <main  role="main">
       {{ content_for_layout }}
     </main>
