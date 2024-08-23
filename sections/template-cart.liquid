@@ -1,4 +1,4 @@
-{% if cart.item_count > 0 %}
+{% comment %} {% if cart.item_count > 0 %}
   <div class="cartsection">
     <div class="cart_container">
       <div class="cart_MEnu-container">
@@ -88,7 +88,87 @@
       </div>
     </div>
   </div>
+{% endif %} {% endcomment %}
+
+{% if cart.item_count > 0 %}
+  <div class="cart-section">
+    <div class="cart-container">
+      <div class="cart-menu-container">
+        <h1 class="cart-heading-section">Your Cart</h1>
+        <a class="continue-shopping-link" href="{{ routes.all_products_collection_url }}">Continue shopping</a>
+      </div>
+      <hr>
+    </div>
+    <div class="cart-items-section">
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart.items %}
+              <tr>
+                <td class="cart-item">
+                  <div class="product-image-wrapper">
+                    <a href="{{ item.url }}">
+                      {% if item.image %}
+                        <img src="{{ item.image | img_url: 'small' }}" alt="{{ item.title | escape }}" class="product-image" width="" height="">
+                        
+                      {% else %}
+                        {{ 'placeholder' | placeholder_svg_tag: 'placeholder-svg-tags' }}
+                      {% endif %}
+                    </a>
+                  </div>
+                  <div class="product-details">
+                    <a href="{{ item.url }}" class="product-title">{{ item.product.title | escape }}</a>
+                    <p class="product-variant">Size: {{ item.variant.title }}</p>
+                    <p class="product-color">Color: {{ item.variant.option2 }}</p>
+                    <p class="product-size">Size: {{ item.variant.option1 }}</p>
+                    <p class="product-price">{{ item.price | money }}</p>
+                  </div>
+                </td>
+                <td class="cart-item-quantity">
+                  <div class="quantity-controls">
+                    <button type="button" class="quantity-btn">-</button>
+                    <input type="number" name="updates[]" value="{{ item.quantity }}" min="1" class="quantity-input">
+                    <button type="button" class="quantity-btn">+</button>
+                  </div>
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="remove-item-link">
+                    <i class="icon-delete"></i>
+                  </a>
+                </td>
+                <td class="cart-item-total">
+                  {{ item.line_price | money }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <hr>
+        <div class="cart-summary">
+          <div class="cart-subtotal">
+            <p>Estimated total</p>
+            <h3>{{ cart.total_price | money }}</h3>
+            <p>Taxes, discounts, and shipping calculated at checkout</p>
+          </div>
+          <div class="cart-actions">
+            <button type="submit" name="checkout" class="checkout-button">Check out</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% else %}
+  <div class="empty-cart-section">
+    <h1>Your cart is empty</h1>
+    <a class="continue-shopping-link" href="{{ routes.all_products_collection_url }}">Continue shopping</a>
+  </div>
 {% endif %}
+
 
 
 
@@ -123,17 +203,22 @@
 
 <style>
   .cart-section {
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 20px;
   }
   
   .cart-heading-section {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
   }
   
   .continue-shopping-link {
     float: right;
     text-decoration: underline;
+    font-size: 16px;
+    color: #333;
   }
   
   .cart-table {
@@ -142,58 +227,105 @@
     border-collapse: collapse;
   }
   
-  .cart-table th, .cart-table td {
+  .cart-table th,
+  .cart-table td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #e1e1e1;
+  }
+  
+  .product-image-wrapper {
+    display: inline-block;
+    width: 80px;
+    vertical-align: top;
   }
   
   .product-image {
-    max-width: 100px;
+    width: 100%;
     height: auto;
+  }
+  
+  .product-details {
+    display: inline-block;
+    margin-left: 15px;
+    vertical-align: top;
   }
   
   .product-title {
     display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
     margin-bottom: 5px;
   }
   
-  .product-variant {
+  .product-variant,
+  .product-color,
+  .product-size,
+  .product-price {
     font-size: 14px;
-    color: #999;
+    color: #666;
+    margin-bottom: 3px;
   }
   
-  .remove-item-link {
-    color: red;
-    text-decoration: none;
-    font-size: 14px;
+  .cart-item-quantity {
+    text-align: center;
+  }
+  
+  .quantity-controls {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .quantity-input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+  
+  .quantity-btn {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .icon-delete {
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
   }
   
   .cart-summary {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px;
   }
   
-  .cart-subtotal {
-    font-size: 20px;
-    font-weight: bold;
+  .cart-subtotal p {
+    font-size: 16px;
+    margin-bottom: 5px;
   }
   
-  .cart-actions .update-button, .cart-actions .checkout-button {
-    background-color: #007acc;
+  .cart-subtotal h3 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .cart-actions {
+    text-align: right;
+  }
+  
+  .checkout-button {
+    background-color: #333;
     color: #fff;
     border: none;
     padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-  }
-  
-  .cart-actions .update-button {
-    margin-right: 10px;
-  }
-  
-  .cart-actions .checkout-button {
-    background-color: #5cb85c;
+    text-transform: uppercase;
   }
   
   .empty-cart-section {
