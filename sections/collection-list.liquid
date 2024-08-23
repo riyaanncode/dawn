@@ -1,4 +1,4 @@
-{% paginate collection.products by 2 %}
+{% comment %} {% paginate collection.products by 2 %}
 <h1>{{ collection.title }}</h1>
 
 {% for product in collection.products %}
@@ -14,4 +14,65 @@
 <p>no matches</p>
 {% endfor %}
 {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+{% endpaginate %} {% endcomment %}
+
+
+{% paginate collection.products by 4 %}
+<h1>{{ collection.title }}</h1>
+
+<div class="products-container">
+  {% for product in collection.products %}
+    <div class="product-item">
+      <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+      <div class="product-price">{{ product.price | money }}</div>
+      {% unless product.available %}
+        <br><strong>sold out</strong>
+      {% endunless %}
+      <a href="{{ product.url | within: collection }}">
+        <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape}}" class="product-image" width="" height="">
+      </a>
+    </div>
+  {% else %}
+    <p>No matches found</p>
+  {% endfor %}
+</div>
+
+{% if paginate.pages > 1 %}
+  {{ paginate | default_pagination }}
+{% endif %}
 {% endpaginate %}
+
+<style>
+    .products-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Adjust spacing between products */
+      }
+      
+      .product-item {
+        display: inline-flex;
+        flex-direction: column;
+        width: 45%; /* Adjust the width as per your layout needs */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+      }
+      
+      .product-item a {
+        text-decoration: none;
+        color: inherit;
+      }
+      
+      .product-price {
+        margin-top: 5px;
+        font-weight: bold;
+      }
+      
+      .product-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      
+</style>
