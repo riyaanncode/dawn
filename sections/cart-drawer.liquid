@@ -1,5 +1,10 @@
 <h1 class="you-cart"> Your Cart</h1>
+    {% for item in cart.items %}
+      <img src="{{ item.image |image_url:'200x' }}" alt="{{ item.title }}" width="" height="">
+      <h3>{{ item.product.title }}</h3>
+      <p>{{ item.variant.title }}</p>
     
+    {% endfor %}
  {% schema %}
     {
       "name":"Cart drawer",
