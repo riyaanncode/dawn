@@ -204,7 +204,12 @@
 
 
 
-<style>
+
+
+
+
+
+ <style>
   .cart-section {
     max-width: 1000px;
     margin: 0 auto;
@@ -305,7 +310,8 @@
   }
   
   .cart-summary {
-    display: flex;
+    text-align: right;
+    {% comment %} display: flex; {% endcomment %}
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
@@ -326,14 +332,17 @@
   }
   
   .checkout-button {
-    border-radius: 10px;
-  font-weight: bold;
-  font-size: 18px;
-  color: white;
-  background-color: black;
-  width: 400px;
-  padding: 16px;
-  border: 2px solid rgb(250, 250, 250);
+    
+      /* margin-right: 50px; */
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+      background-color: black;
+      width: 335px;
+      padding: 16px;
+      border: 2px solid rgb(250, 250, 250);
+  
   }
   
   .empty-cart-section {
@@ -361,5 +370,65 @@
   border: 2px solid rgb(250, 250, 250);
 }
 
+.product-details {
+  display: inline-block;
+  width: calc(100% - 100px); /* Adjust the 100px based on the width of your product image */
+  margin-left: 10px; /* Adds space between the product image and details */
+  vertical-align: top;
+  position: relative; /* Keeps the element in the normal flow of the document */
+}
 
-</style>
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  display: block; /* Ensures the title takes its own line */
+}
+
+.product-variant,
+.product-color,
+.product-size,
+.product-price {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 3px;
+}
+.update-button {
+  /* margin-right: 50px; */
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  background-color: black;
+  width: 335px;
+  padding: 16px;
+  border: 2px solid rgb(250, 250, 250);
+}
+
+
+@media (max-width: 768px) {
+  .cart-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-actions .update-button, .cart-actions .checkout-button {
+    width: 100%;
+    margin: 5px 0;
+  }
+  .update-button {
+    /* margin-right: 50px; */
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    width: 335px;
+    padding: 16px;
+    border: 2px solid rgb(250, 250, 250);
+}
+}
+
+
+</style> 
