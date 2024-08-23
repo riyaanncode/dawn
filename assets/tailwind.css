@@ -1515,14 +1515,24 @@ time[itemprop="dateCreated datePublished"] {
 
 /* General Form Container Styles */
 .form__container {
-  margin-left: 500px;
+   /* margin-left: 300px;
   width: 100%;
-  /* max-width: 600px; */
+  /* max-width: 600px; 
   padding: 36px;
   background-color: #e8e3e324;
   border: 1px solid #ddd;
   border-radius: 5px;
+  box-shadow: 0 2px 8px #0000001a;  */
+
+  margin-left: 300px;
+  width: 100%;
+  /* max-width: 600px; */
+  padding: 46px 164px;
+  background-color: #e8e3e324;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   box-shadow: 0 2px 8px #0000001a;
+
 
 }
 
@@ -1561,13 +1571,15 @@ time[itemprop="dateCreated datePublished"] {
 /* Submit Button Styles */
 .form__submit {
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 26px;
+    color: #fff;
+    background-color: #222325;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 }
 
