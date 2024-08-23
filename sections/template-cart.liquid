@@ -155,6 +155,9 @@
             <h3>{{ cart.total_price | money }}</h3>
             <p>Taxes, discounts, and shipping calculated at checkout</p>
           </div>
+          <div class="updte">
+            <button type="submit" name="update" class="update-button">Update</button>
+          </div>
           <div class="cart-actions">
             <button type="submit" name="checkout" class="checkout-button">Check out</button>
           </div>
@@ -215,10 +218,14 @@
   }
   
   .continue-shopping-link {
+    margin-left: 923px;
+    position: absolute;
+    top: 102px;
     float: right;
     text-decoration: underline;
     font-size: 16px;
     color: #333;
+}
   }
   
   .cart-table {
@@ -319,13 +326,14 @@
   }
   
   .checkout-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    text-transform: uppercase;
+    border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  background-color: black;
+  width: 400px;
+  padding: 16px;
+  border: 2px solid rgb(250, 250, 250);
   }
   
   .empty-cart-section {
@@ -337,6 +345,21 @@
     font-size: 22px;
     margin-bottom: 20px;
   }
-  
+  .cart-table th, .cart-table td {
+    font-size: 25px;
+    padding: 14px 16px;
+    text-align: left;
+}
+.update-button {
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  background-color: black;
+  width: 400px;
+  padding: 16px;
+  border: 2px solid rgb(250, 250, 250);
+}
+
 
 </style>
