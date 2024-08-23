@@ -1,27 +1,74 @@
-
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
+    "header_qRyLGq": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    },
     "template": {
       "type": "template-product",
-      "blocks":{
-          "vendor":{"type":"vendor"},
-          "title":{"type":"title"},
-          "variant_selector":{"type":"variant_selector"},
-          "quantity":{"type":"quantity"},
-          "description":{"type":"description"},
-          "checkout_button":{"type":"checkout_button"}
+      "blocks": {
+        "vendor_K8YWhc": {
+          "type": "vendor",
+          "settings": {
+          }
+        },
+        "price_8werW3": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "variant_selector_TKJVLK": {
+          "type": "variant_selector",
+          "settings": {
+          }
+        },
+        "quantity_nwXijz": {
+          "type": "quantity",
+          "settings": {
+          }
+        },
+        "title_Fa7kUw": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "description_wrTFDC": {
+          "type": "description",
+          "settings": {
+          }
+        },
+        "checkout_button_B3eG3F": {
+          "type": "checkout_button",
+          "settings": {
+          }
+        }
       },
-      "block_order":[
-"vendor","title","variant_selector", "quantity","description","checkout_button"
-
-
-      ]
-    
-    },
-   
+      "block_order": [
+        "vendor_K8YWhc",
+        "price_8werW3",
+        "variant_selector_TKJVLK",
+        "quantity_nwXijz",
+        "title_Fa7kUw",
+        "description_wrTFDC",
+        "checkout_button_B3eG3F"
+      ],
+      "settings": {
+      }
+    }
   },
   "order": [
-    "template",
-    
+    "header_qRyLGq",
+    "template"
   ]
 }
