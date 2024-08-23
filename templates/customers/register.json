@@ -9,7 +9,7 @@
 */
 {
   "sections": {
-    "header_qjBWF": {
+    "header": {
       "type": "header",
       "settings": {
         "menu": "main-menu"
@@ -22,7 +22,7 @@
     }
   },
   "order": [
-    "header_qjKBWF",
+    "header",
     "template"
   ]
 }
