@@ -250,7 +250,7 @@
                   <p>{{ product.description }}</p>
                 </div>
               {% when 'checkout_button' %}
-                <div class="add-to-cart-SEction">
+                   <div class="add-to-cart-SEction">
                   <button
                     type="submit"
                     name="add"
@@ -265,7 +265,8 @@
                       Add To Cart
                     {% endif %}
                   </button>
-                </div>
+                </div> 
+
 
               {%- else -%}
             {%- endcase -%}
@@ -340,7 +341,64 @@
     }
 
     customElements.define('variant-selector', VariantSelector);
+  });.
+
+
+
+
+
+/*
+  document.addEventListener('DOMContentLoaded', function() {
+    const addToCartButton = document.getElementById('addToCartButton');
+  
+    if (addToCartButton) {
+      addToCartButton.addEventListener('click', function(event) {
+        event.preventDefault();
+  
+        // Get the form data
+        const formData = new FormData(event.target.closest('form'));
+  
+        // Send the form data to the cart
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Product added to cart:', data);
+          openCartDrawer();
+        })
+        .catch(error => {
+          console.error('Error adding product to cart:', error);
+        });
+      });
+    }
+  
+    function openCartDrawer() {
+      fetch('/?section_id=cart-drawer')
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const cartDrawer = doc.querySelector('section.cart-drawer');
+          
+          if (cartDrawer) {
+            // Assuming there's a container in your page to hold the cart drawer
+            document.body.appendChild(cartDrawer);
+            
+            // Display the cart drawer
+            cartDrawer.classList.add('is-open'); // Assuming there's a class to show the drawer
+          }
+        })
+        .catch(error => {
+          console.error('Error loading cart drawer:', error);
+        });
+    }
   });
+   */
 </script>
 
 {% schema %}
