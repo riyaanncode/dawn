@@ -1,4 +1,4 @@
-{% comment %} <div class="relative bg-white">
+<div class="relative bg-white">
   <div class="max-w-screen-xl mx-auto px-4">
     <div class="flex justify-between items-center py-4">
       <!-- Store Logo and Title -->
@@ -33,7 +33,7 @@
                       <a href="{{ childlink.url }}" class="child-link block p-2 hover:bg-gray-100">
                         <div class="class-m">
                           <p class="p-m">
-                            {{ childlink.title }}
+                            {% comment %} {{ childlink.title }} {% endcomment %}
                           </p>
                         </div>
                       </a>
@@ -94,105 +94,6 @@
       </div>
     </div>
   </div>
-</div> {% endcomment %}
-
-
-
-
-<div class="relative bg-white">
-  <div class="max-w-screen-xl mx-auto px-4">
-    <div class="flex justify-between items-center py-4">
-      <!-- Store Logo and Title -->
-      <div class="store_title">
-        <h1 class="title text-2xl font-bold">
-          {{ shop.name }}
-        </h1>
-      </div>
-
-      <!-- Hamburger Menu for Mobile -->
-      <div class="humbermenu-section md:hidden">
-        <button class="humber-menu-button">
-          {% render 'icon-menu' %}
-        </button>
-      </div>
-
-      <!-- Navigation Menu -->
-      <div class="hidden md:flex md:space-x-4 nav-menu">
-        {% for link in linklists[section.settings.menu].links %}
-          {% if link.links != blank %}
-            <div class="relative">
-              <button class="inline-flex items-center dropdown-button">
-                {{ link.title }}
-                <span class="dropdown-icon">
-                  {% render 'icon-dropdown' %}
-                </span>
-              </button>
-              <div class="child-MenuSection hidden absolute bg-white shadow-lg mt-2">
-                <div class="child-section p-4">
-                  <div class="child-menu">
-                    {% for childlink in link.links %}
-                      <a href="{{ childlink.url }}" class="child-link block p-2 hover:bg-gray-100">
-                        <div class="class-m">
-                          <p class="p-m">
-                            {{ childlink.title }}
-                          </p>
-                        </div>
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </div>
-          {% else %}
-            <a href="{{ link.url }}" class="text-gray-700 hover:text-gray-900">
-              {{ link.title }}
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-
-      <!-- Cart Button / Account Links if enabled -->
-      <div class="hidden md:flex space-x-4">
-        <!-- Button with search icon -->
-        <button class="search_option-Section" id="search-button">
-          {% render 'icon-search' %}
-        </button>
-
-        <!-- Popup overlay -->
-        <div class="popup-overlay" id="search-popup">
-          <div class="popup-content">
-            <input type="text" id="search-input" class="search-input" placeholder="Search...">
-            <button class="close-popup" id="close-popup">Close</button>
-          </div>
-        </div>
-
-        <a class="whitespace-nowrap text-base" href="{{ routes.cart_url }}">
-          {% render 'icon-shoping-bag' %}
-        </a>
-        {% if shop.customer_accounts_enabled %}
-          {% if customer %}
-            <a href="{{routes.accounts_url}}" class="text-base text-gray-500 hover:text-gray-900">Account</a>
-            {{
-              'logout'
-              | customer_logout_link
-              | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-900"'
-            }}
-          {% else %}
-            {{
-              'Login'
-              | customer_login_link
-              | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-900"'
-            }}
-            {{
-              'Register'
-              | customer_register_link
-              | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-900"'
-            }}
-          {% endif %}
-        {% endif %}
-      </div>
-    </div>
-  </div>
 </div>
 
 {% schema %}
@@ -218,32 +119,28 @@
 }
 {% endschema %}
 
-<!-- JavaScript to handle the dropdown -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const dropdownButtons = document.querySelectorAll('.dropdown-button');
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('search-button');
+    const searchPopup = document.getElementById('search-popup');
+    const closePopup = document.getElementById('close-popup');
 
-    dropdownButtons.forEach(button => {
-      button.addEventListener('click', function(event) {
-        // Prevent the default link action
-        event.preventDefault();
-
-        // Find the corresponding dropdown menu
-        const dropdownMenu = this.nextElementSibling;
-
-        // Toggle the visibility of the dropdown menu
-        dropdownMenu.classList.toggle('hidden');
-      });
+    // Show the popup when the search button is clicked
+    searchButton.addEventListener('click', () => {
+      searchPopup.style.display = 'flex';
+      document.getElementById('search-input').focus(); // Focus on the input box
     });
 
-    // Close the dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-      dropdownButtons.forEach(button => {
-        const dropdownMenu = button.nextElementSibling;
-        if (!button.contains(event.target) && !dropdownMenu.contains(event.target)) {
-          dropdownMenu.classList.add('hidden');
-        }
-      });
+    // Close the popup when the close button is clicked
+    closePopup.addEventListener('click', () => {
+      searchPopup.style.display = 'none';
+    });
+
+    // Close the popup when clicking outside of the popup content
+    searchPopup.addEventListener('click', (event) => {
+      if (event.target === searchPopup) {
+        searchPopup.style.display = 'none';
+      }
     });
   });
 </script>
