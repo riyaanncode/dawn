@@ -19,17 +19,17 @@
     <button type="submit" name="checkout">Checkout</button>
     {% endform %}
   {% endif %}
-</div> {% endcomment %}
+</div>  {% endcomment %}
 
 
 
 
-<div class="drawer cart-drawer--active">
+ <div class="drawer cart-drawer--active"  style="display: none;">
   <h1 class="your-cart">Your Cart ({{ cart.item_count }})</h1>
   {% if cart.item_count == 0 %}
     <p>Your Cart is Empty</p>
   {% else %}
-    {% form 'cart', cart  %}
+    {% form 'cart',cart  %}
       <div class="cart-items">
         {% for item in cart.items %}
         <div class="cart-item">
@@ -65,7 +65,7 @@
       "name":"Cart drawer",
       "settings": []
     }
-{% endschema %} 
+{% endschema %}  
 
 
 {% comment %} <script>
