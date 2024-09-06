@@ -309,6 +309,7 @@
                   <button
                     type="submit"
                     name="add"
+                    aria-haspopup="dialog"
                     class="add-button"
                     {% if product.selected_variant == false %}
                       disabled
@@ -338,9 +339,20 @@
 
 <script>
   function openCartDrawer() {
-    // Display the cart drawer
-    debugger
+    document.querySelectorAll('.product_media form[action="/cart/add"]').forEach((form) => {
+      form.addEventListener('submit',async (e) => {
+        e.preventDefault();
+        console.log("form: ", form);
+      
+        
+        await fetch('/cart/add', {
+          method: 'POST',
+          body: new FormData(form),
+    });
     document.getElementsByClassName('cart-drawer--active')[0].style.display = 'block';
+  });
+  });
+    
   }
 </script>
 
